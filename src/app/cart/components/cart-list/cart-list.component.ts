@@ -18,8 +18,11 @@ export class CartListComponent implements OnInit {
   }
 
   trackCartList(index: number, cartList: { id: number; }) {
-      return cartList ? cartList.id : undefined;
+    return cartList ? cartList.id : undefined;
+  }
 
+  removeItem() {
+    return this.cartList.pop();
   }
 
 }
