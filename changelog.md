@@ -16,6 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 5. Created ProductComponent
 - 6. Created ProductService, ProductListComponent. Implemented show item on the table wit *ngFor
 - 7. Created CartListComponent, CartService. Implemented *ngIf + else, *ngFor + trackBuy.
-- 8. 
+- 8. Implemented remove items from cart.
 - 9. Implemented changelog.md file.
 - 10. Upload project on github. 
