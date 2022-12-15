@@ -14,6 +14,5 @@ export class ProductComponent implements OnInit {
 
   public onAddToCart(): void {
     console.log('product add to cart');
-
   }
 }

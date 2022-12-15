@@ -1,1 +1,11 @@
-<app-product></app-product>
+<div class="list">
+  <mat-card *ngFor="let product of productList">
+      <mat-card-header>{{ product.title }}</mat-card-header>
+      <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
+      <mat-card-content>price: {{ product.price }} $</mat-card-content>
+      <mat-card-footer>{{ STRINGS.IS_HAS_IN_STORE }}
+          <span *ngIf="product.isAvalableInStore"> yes </span>
+      </mat-card-footer>
+      <app-product></app-product>
+  </mat-card>
+</div>
