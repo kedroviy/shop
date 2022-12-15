@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "title": "milk",
+    "description": "milk 2.8%",
+    "price": 1.86,
+    "isAvalableInStore": true
+},
+{
+    "id": 2,
+    "title": "coockies",
+    "description": "chocolate coockies",
+    "price": 3,
+    "isAvalableInStore": true
+},
+{
+    "id": 3,
+    "title": "water",
+    "description": "natural water",
+    "price": 1.15,
+    "isAvalableInStore": true
+}]
