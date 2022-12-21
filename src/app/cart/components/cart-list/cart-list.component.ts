@@ -11,7 +11,9 @@ import { CartService } from '../../services/cart.service';
 export class CartListComponent implements OnInit {
   cartList: CartList[] = [];
 
-  constructor(public cartService: CartService) { }
+  // если сервис не используется в шаблоне,
+  // то внедряйте его как приватный
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartList = this.cartService.getCartList();
@@ -21,6 +23,8 @@ export class CartListComponent implements OnInit {
     return cartList ? cartList.id : undefined;
   }
 
+  // этот метод вызывается для каждого элемента, но удаляет всегда последний
+  // ему надо задавать идентификатор объекта, чтобы он удалял конкретный объект, а не последний
   removeItem() {
     return this.cartList.pop();
   }
