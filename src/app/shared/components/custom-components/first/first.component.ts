@@ -9,13 +9,15 @@ import { ISimpleInterface, Category } from './FirstModel.models';
 })
 
 export class FirstComponent implements OnInit {
-  public name: string = 'name';
-  public description: string = 'description';
+  // обычно не используют мождификатор public для полей и методов класса,
+  // если они публичны, так как они публичны по-умолчанию
+  name: string = 'name';
+  description: string = 'description';
 
-  public data: ISimpleInterface[] = [{
-  price: 5,
-  category: Category.food,
-  isAvailable: false,
+  data: ISimpleInterface[] = [{
+    price: 5,
+    category: Category.food,
+    isAvailable: false,
   }]
 
   constructor() {

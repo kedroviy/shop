@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/products/models/product.model';
 
 import { ProductsService } from 'src/app/products/services/products.service';
-import { STRINGS } from '../../../../../app-config/const/constants';
+import { STRINGS as STR_CONST } from '../../../../../app-config/const/constants';
 
 @Component({
   selector: 'app-product-list',
@@ -11,9 +11,13 @@ import { STRINGS } from '../../../../../app-config/const/constants';
 })
 export class ProductListComponent implements OnInit {
   productList: ProductModel[] = [];
-  STRINGS = STRINGS;
+  // такие записи выглядят не очень понятными
+  // STRINGS = STRINGS;
+  STRINGS = STR_CONST;
 
-  constructor(public productService: ProductsService) {}
+  // если сервис не предполагается использовать в шаблоне,
+  // то внедряйте его как приватный
+  constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();

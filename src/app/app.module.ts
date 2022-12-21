@@ -31,7 +31,8 @@ import { CartService } from './cart/services/cart.service';
     MatButtonModule,
     MatBadgeModule
   ],
-  providers: [ProductsService, CartService],
+  // не нужно тут регистрировать сервисы, они уже зарегистрированы
+  // providers: [ProductsService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
