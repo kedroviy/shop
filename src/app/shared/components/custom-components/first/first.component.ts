@@ -9,10 +9,11 @@ import { ISimpleInterface, Category } from './FirstModel.models';
 })
 
 export class FirstComponent implements OnInit {
-  public name: string = 'name';
-  public description: string = 'description';
+  isShowFirstComponent: boolean = false;
+  name: string = 'name';
+  description: string = 'description';
 
-  public data: ISimpleInterface[] = [{
+  data: ISimpleInterface[] = [{
   price: 5,
   category: Category.food,
   isAvailable: false,

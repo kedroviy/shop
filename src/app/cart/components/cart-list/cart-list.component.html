@@ -1,13 +1,17 @@
 <div class="cart">
     <h1>Cart: </h1>
     <div *ngIf="cartList.length; else isEmptyCart">
-      <ul *ngFor="let cartItem of cartList; trackBy: trackCartList" (click)="removeItem()">
+      <ul
+        *ngFor="let cartItem of cartList;
+        trackBy: trackCartList
+        let i = index "
+        (click)="removeItem(i)">
           <li>
               {{ cartItem.name }} - {{ cartItem.price }} $
           </li>
         </ul>
     </div>
     <ng-template  #isEmptyCart>
-        <p>Cart is empty</p>
+        <p class="cart-empty">Cart is empty</p>
     </ng-template>
 </div>

@@ -11,7 +11,7 @@ import { CartService } from '../../services/cart.service';
 export class CartListComponent implements OnInit {
   cartList: CartList[] = [];
 
-  constructor(public cartService: CartService) { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartList = this.cartService.getCartList();
@@ -21,8 +21,8 @@ export class CartListComponent implements OnInit {
     return cartList ? cartList.id : undefined;
   }
 
-  removeItem() {
-    return this.cartList.pop();
+  removeItem(id: number) {
+    return this.cartList.splice(id, 1);
   }
 
 }

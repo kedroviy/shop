@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/products/models/product.model';
 
 import { ProductsService } from 'src/app/products/services/products.service';
-import { STRINGS } from '../../../../../app-config/const/constants';
+import { STRINGS as STR_LIST } from '../../../../../app-config/const/constants';
 
 @Component({
   selector: 'app-product-list',
@@ -11,9 +11,9 @@ import { STRINGS } from '../../../../../app-config/const/constants';
 })
 export class ProductListComponent implements OnInit {
   productList: ProductModel[] = [];
-  STRINGS = STRINGS;
+  STRINGS = STR_LIST;
 
-  constructor(public productService: ProductsService) {}
+  constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();

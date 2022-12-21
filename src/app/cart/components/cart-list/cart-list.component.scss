@@ -1,6 +1,16 @@
 .cart {
+    display: flex;
     width: 350px;
     border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
-}
+  }
+
+  li {
+    cursor: pointer;
+    background-color: antiquewhite;
+  }
+
+  .cart-empty {
+    padding: 25px;
+  }
