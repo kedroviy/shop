@@ -31,7 +31,7 @@ import { CartService } from './cart/services/cart.service';
     MatButtonModule,
     MatBadgeModule
   ],
-  providers: [ProductsService, CartService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
