@@ -6,21 +6,21 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     CartListComponent,
     CartItemComponent,
-    CartItemComponent
+    
   ],
   exports: [CartListComponent, CartItemComponent],
   imports: [
     CommonModule,
     MatTooltipModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class CartModule { }

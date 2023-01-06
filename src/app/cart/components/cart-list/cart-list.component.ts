@@ -25,10 +25,6 @@ export class CartListComponent implements OnInit, DoCheck {
     this.totalCost = this.cartService.totalCost();
   }
 
-  trackCartList(index: number, cartList: { id: number; }) {
-    return cartList ? cartList.id : undefined;
-  }
-
   onQuantityIncrease(cartItem: CartList): void {
     this.cartService.onQuantityIncrease(cartItem)
   }
@@ -36,4 +32,13 @@ export class CartListComponent implements OnInit, DoCheck {
   onQuantityDecrease(cartItem: CartList): void {
     this.cartService.onQuantityDecrease(cartItem)
   }
+
+  onDeleteItem(id: number): void {
+    this.cartService.onDeleteItem(id)
+  }
+
+  trackCartList(index: number, cartList: { id: number; }) {
+    return cartList ? cartList.id : undefined;
+  }
+
 }

@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
   min-width: 400px;
   height: 55px;
   border-radius: 4px;
@@ -28,5 +29,10 @@
   button {
     height: 55px;
     width: 50px;
+  }
+
+  .close-icon {
+    position: absolute;
+    right: -25px;
   }
 }

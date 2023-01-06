@@ -1,11 +1,11 @@
-import { ProductModel } from 'src/app/products/models/product.model';
-import { Injectable } from '@angular/core';
+import { Injectable, DoCheck } from '@angular/core';
 import { CartList } from '../models/cart.models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+
+export class CartService implements DoCheck {
   cartList: CartList[] = [
     {
       id: 1,
@@ -52,6 +52,33 @@ export class CartService {
   ]
   constructor() { }
 
+  ngDoCheck() {
+
+  }
+
+  onQuantityIncrease(cartItem: CartList) {
+    this.cartList.map(listItem => {
+      if(listItem.description === cartItem.description) {
+        listItem.quantity ? listItem.quantity += 1 : listItem.quantity = 1
+        listItem.price += cartItem.price
+        console.log(cartItem.price)
+      }
+    })
+  }
+
+  onQuantityDecrease(cartItem: CartList) {
+    this.cartList.map(listItem => {
+      if(listItem.description === cartItem.description) {
+        listItem.quantity ? listItem.quantity -= 1 : null;
+        listItem.price -= cartItem.price
+      }
+    })
+  }
+
+  onDeleteItem(id: number) {
+    return this.cartList.splice(id, 1);
+  }
+
   getCartList(): CartList[]{
     return this.cartList;
   }
@@ -66,24 +93,6 @@ export class CartService {
     }
   }
 
-  onQuantityIncrease(cartItem: CartList) {
-    this.cartList.map(listItem => {
-      if(listItem.description === cartItem.description) {
-        listItem.quantity ? listItem.quantity += 1 : listItem.quantity = 1
-        listItem.price += cartItem.price
-      }
-    })
-  }
-
-  onQuantityDecrease(cartItem: CartList) {
-    this.cartList.map(listItem => {
-      if(listItem.description === cartItem.description) {
-        listItem.quantity ? listItem.quantity -= 1 : null;
-        listItem.price -= cartItem.price
-      }
-    })
-  }
-
   totalCost(): number {
     let resultArray: number[] = [];
     let resultCost: number = 0;
@@ -96,11 +105,9 @@ export class CartService {
     return Number(resultCost.toFixed(2))
   }
 
+
   totalQuantity(): number {
     return this.cartList.length
   }
 
-  onDeleteItem(id: number) {
-    return this.cartList.splice(id, 1);
-  }
 }
