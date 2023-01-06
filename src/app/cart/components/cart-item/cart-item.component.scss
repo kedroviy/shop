@@ -1,0 +1,32 @@
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 400px;
+  height: 55px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 14px -8px rgba(28, 41, 51, 0.425);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0px 0px 14px -8px rgba(18, 22, 26, 0.733);
+  }
+
+  & > * {
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  &__operations {
+    display: flex;
+    justify-content: flex-end;
+    width: 45px;
+  }
+
+  button {
+    height: 55px;
+    width: 50px;
+  }
+}
