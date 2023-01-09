@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CartService } from 'src/app/cart/services/cart.service';
+
 import { ProductModel } from 'src/app/products/models/product.model';
 
-import { ProductsService } from 'src/app/products/services/products.service';
-import { STRINGS } from '../../../../../app-config/const/constants';
 
 @Component({
   selector: 'app-product-list',
@@ -10,13 +10,17 @@ import { STRINGS } from '../../../../../app-config/const/constants';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  productList: ProductModel[] = [];
-  STRINGS = STRINGS;
+  @Input() products: ProductModel[] = [];
+  @Input() productItem: ProductModel[] = [];
+  @Output() onBoughtProduct: EventEmitter<ProductModel> = new EventEmitter();
 
-  constructor(public productService: ProductsService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.productList = this.productService.getProducts();
+  }
+
+  addOnCart(productItem: ProductModel): void {
+    this.cartService.addOnCartSimple(productItem)
   }
 
 }

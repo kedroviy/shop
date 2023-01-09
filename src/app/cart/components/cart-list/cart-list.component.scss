@@ -1,6 +1,25 @@
 .cart {
-    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 350px;
+    max-width: 40%;
     border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
-}
+    margin: 20px;
+
+    .products-values {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+
+  li {
+    cursor: pointer;
+    background-color: antiquewhite;
+  }
+
+  .cart-empty {
+    padding: 25px;
+  }
