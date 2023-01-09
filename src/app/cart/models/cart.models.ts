@@ -1,5 +1,8 @@
 export interface CartList {
-    id: number,
-    name: string,
-    price: number,
+  id: number,
+  title: string,
+  description: string,
+  price: number,
+  isAvalableInStore: boolean,
+  quantity?: number,
 }
