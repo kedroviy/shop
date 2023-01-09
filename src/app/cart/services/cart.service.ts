@@ -53,7 +53,7 @@ export class CartService implements DoCheck {
   constructor() { }
 
   ngDoCheck() {
-
+    
   }
 
   onQuantityIncrease(cartItem: CartList) {
