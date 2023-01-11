@@ -1,3 +1,5 @@
+// import { ProductModel } from "src/app/products/models/product.model";
+
 export interface CartList {
   id: number,
   title: string,
@@ -6,3 +8,7 @@ export interface CartList {
   isAvalableInStore: boolean,
   quantity?: number,
 }
+// более короткий вариант
+// export interface CartList extends ProductModel {
+//   quantity?: number,
+// }

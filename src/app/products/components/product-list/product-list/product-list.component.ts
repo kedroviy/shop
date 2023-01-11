@@ -10,6 +10,7 @@ import { ProductModel } from 'src/app/products/models/product.model';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  // Для чего эти инпуты и аутпут?
   @Input() products: ProductModel[] = [];
   @Input() productItem: ProductModel[] = [];
   @Output() onBoughtProduct: EventEmitter<ProductModel> = new EventEmitter();

@@ -12,9 +12,9 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     CartListComponent,
     CartItemComponent,
-    
+
   ],
-  exports: [CartListComponent, CartItemComponent],
+  exports: [CartListComponent /*, CartItemComponent */],
   imports: [
     CommonModule,
     MatTooltipModule,
