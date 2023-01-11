@@ -52,11 +52,14 @@ export class CartService implements DoCheck {
   ]
   constructor() { }
 
+  // что это и зачем?
   ngDoCheck() {
-    
+
   }
 
   onQuantityIncrease(cartItem: CartList) {
+    // обычно map возвращает новый массив
+    // если этого не требуется, то лучше использовать forEach
     this.cartList.map(listItem => {
       if(listItem.description === cartItem.description) {
         listItem.quantity ? listItem.quantity += 1 : listItem.quantity = 1
@@ -69,7 +72,7 @@ export class CartService implements DoCheck {
   onQuantityDecrease(cartItem: CartList) {
     this.cartList.map(listItem => {
       if(listItem.description === cartItem.description) {
-        listItem.quantity ? listItem.quantity -= 1 : null;
+        listItem.quantity ? listItem.quantity -= 1 : null; // null?
         listItem.price -= cartItem.price
       }
     })
@@ -84,8 +87,10 @@ export class CartService implements DoCheck {
   }
 
   addOnCartSimple(product: CartList): void {
+    // не самый лучший способ искать уникальный товар по описанию,
+    // может тогда завести идентификаторы?
     const equalCartItem = this.cartList.filter(cartItem => cartItem.description === product.description);
-    
+
     if(equalCartItem.length) {
       console.log('already in cart');
     } else {
@@ -103,6 +108,8 @@ export class CartService implements DoCheck {
 
     resultCost = resultArray.reduce((sum, item) => sum + item, 0);
     return Number(resultCost.toFixed(2))
+    // альтернативный способ
+    // return +resultCost.toFixed(2)
   }
 
 

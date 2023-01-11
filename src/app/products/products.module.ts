@@ -14,7 +14,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     ProductListComponent,
   ],
   exports: [
-    ProductComponent,
+    // ProductComponent,
     ProductListComponent,
   ],
   imports: [
