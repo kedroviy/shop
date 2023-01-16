@@ -4,7 +4,7 @@
   let i = index "
 
   class="cart-item"
-  matTooltip=cartItem.description
+  [matTooltip]=cartItem.description
   matTooltipPosition="above"
   appHighLight>
   <span class="close-icon" (click)="onDeleteItem(i)"><mat-icon color='warn'>cancel</mat-icon></span>

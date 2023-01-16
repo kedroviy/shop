@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CommonConnectService } from './common-connect.service';
+import { ConstantsService } from './constants.service';
 
-describe('CommonConnectService', () => {
-  let service: CommonConnectService;
+describe('ConstantsService', () => {
+  let service: ConstantsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CommonConnectService);
+    service = TestBed.inject(ConstantsService);
   });
 
   it('should be created', () => {
