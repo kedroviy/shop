@@ -110,4 +110,12 @@ export class CartService implements DoCheck {
     return this.cartList.length
   }
 
+  isEmptyCart(): boolean {
+    if(!this.cartList.length) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 }

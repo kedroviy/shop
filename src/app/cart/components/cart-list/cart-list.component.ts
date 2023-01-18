@@ -12,6 +12,7 @@ export class CartListComponent implements OnInit, DoCheck {
   cartList: CartList[] = [];
   totalQuantity: number = 0;
   totalCost: number = 0;
+  isEmptyCart: boolean = false;
 
   constructor(private cartService: CartService) { }
 
@@ -23,6 +24,7 @@ export class CartListComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.totalQuantity = this.cartService.totalQuantity();
     this.totalCost = this.cartService.totalCost();
+    this.isEmptyCart = this.cartService.isEmptyCart();
   }
 
   onQuantityIncrease(cartItem: CartList): void {

@@ -1,44 +1,24 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { of } from 'rxjs'
+
 import { ProductModel } from '../models/product.model';
+
+import * as productsData from '../../../assets/products.json';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductsService {
-  products: ProductModel[] = [
-    {
-      id: 1,
-      title: "milk",
-      description: "milk 2.8%",
-      price: 1.86,
-      isAvalableInStore: true
-    },
-    {
-      id: 2,
-      title: "cookies",
-      description: "chocolate coockies",
-      price: 3,
-      isAvalableInStore: true
-    },
-    {
-      id: 3,
-      title: "water",
-      description: "natural water",
-      price: 1.15,
-      isAvalableInStore: true
-    },
-    {
-      id: 3,
-      title: "notebook",
-      description: "natural papper 12",
-      price: 2.15,
-      isAvalableInStore: true
-    }];
 
-  constructor(){}
+  data = productsData; 
 
-  getProducts(): Array<ProductModel> {
-    return this.products;
+  constructor(private http: HttpClient){}
+
+  getProducts(): Observable<any> {
+    return of(this.data);
   }
 }

@@ -1,5 +1,6 @@
 <div class="list">
   <app-product
+    [products]="productList"
     (onBoughtProduct)="addOnCart($event)">
   </app-product>
 </div>

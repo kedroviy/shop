@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
+import { STRINGS } from '../app-config/const/constants';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +12,6 @@ export class AppComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
-    el.innerHTML = 'Shop'
+    el.innerHTML = STRINGS.HEADER_TITLE
   }
 }

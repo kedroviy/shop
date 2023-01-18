@@ -8,7 +8,7 @@ export class HighLightDirective {
   @Input() boxShadow: string = '0px 0px 14px -8px rgba(18, 22, 26, 0.733);';
   constructor() { }
 
-  @HostBinding("style.backgroundColor") bindBackgroundColor = '';
+  @HostBinding("style.backgroundColor") bindBackgroundColor:string = '';
 
   @HostListener("mouseenter") onMouseEnter() {
     this.bindBackgroundColor = this.backgroundColor;
