@@ -9,7 +9,7 @@
   appHighLight>
   <span class="close-icon" (click)="onDeleteItem(i)"><mat-icon color='warn'>cancel</mat-icon></span>
   <h2>{{ cartItem.title | uppercase }}</h2>
-  <p>{{ cartItem.price }} $</p>
+  <p>{{ cartItem.price | currency}}</p>
   <div class="cart-item__operations">
     <button mat-stroked-button (click)="onQuantityDecrease(cartItem)"><mat-icon color='warn'>indeterminate_check_box</mat-icon></button>
     <button mat-stroked-button (click)="onQuantityIncrease(cartItem)"><mat-icon color='green'>add_box</mat-icon></button>
