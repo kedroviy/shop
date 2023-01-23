@@ -10,7 +10,7 @@ export class HostClickDirective {
 
   constructor(
     private renderer: Renderer2,
-    element: ElementRef
+    private element: ElementRef
   ) {
     this.item = element.nativeElement;
   }
