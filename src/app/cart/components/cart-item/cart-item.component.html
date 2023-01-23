@@ -12,6 +12,8 @@
   <p>{{ cartItem.price }} $</p>
   <div class="cart-item__operations">
     <button mat-stroked-button (click)="onQuantityDecrease(cartItem)"><mat-icon color='warn'>indeterminate_check_box</mat-icon></button>
+    <!-- Было бы хорошо сделать так, чтобы при клике на эту кнопку не прыгали записи.
+    После клика сума и кнопки сдвигаются -->
     <button mat-stroked-button (click)="onQuantityIncrease(cartItem)"><mat-icon color='green'>add_box</mat-icon></button>
   </div>
   <span *ngIf="cartItem.quantity">{{ cartItem.quantity }}</span>
