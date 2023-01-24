@@ -9,14 +9,16 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit, DoCheck {
-  cartList: CartList[] = [];
+  cartList!: CartList[];
   totalQuantity: number = 0;
   totalCost: number = 0;
   isEmptyCart: boolean = false;
-
+  sortItems!: keyof CartList;
+  isReverse: boolean = false;
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartList = this.cartService.getCartList();
     this.totalQuantity = this.cartService.totalQuantity();
     this.cartService.totalCost();
   }
@@ -25,18 +27,19 @@ export class CartListComponent implements OnInit, DoCheck {
     this.totalQuantity = this.cartService.totalQuantity();
     this.totalCost = this.cartService.totalCost();
     this.isEmptyCart = this.cartService.isEmptyCart();
+    this.cartList = this.cartService.getCartList();
   }
 
   onQuantityIncrease(cartItem: CartList): void {
-    this.cartService.onQuantityIncrease(cartItem)
+    this.cartService.onQuantityIncrease(cartItem);
   }
 
   onQuantityDecrease(cartItem: CartList): void {
-    this.cartService.onQuantityDecrease(cartItem)
+    this.cartService.onQuantityDecrease(cartItem);
   }
 
-  onDeleteItem(id: number): void {
-    this.cartService.onDeleteItem(id)
+  onDeleteItem(item: CartList): void {
+    this.cartService.onDeleteItem(item);
   }
 
   trackCartList(index: number, cartList: { id: number; }) {

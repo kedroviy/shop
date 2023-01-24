@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ProductModel } from 'src/app/products/models/product.model';
 import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
@@ -6,10 +6,11 @@ import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent implements OnInit {
-  @Input() products: ProductModel[] = [];
+  @Input() product!: ProductModel;
   @Output() onBoughtProduct = new EventEmitter<ProductModel>();
 
   STRINGS = STR_LIST;
