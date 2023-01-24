@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     min-width: 350px;
-    max-width: 40%;
     border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
@@ -13,13 +12,32 @@
       flex-direction: column;
       align-items: flex-end;
     }
-  }
 
-  li {
-    cursor: pointer;
-    background-color: antiquewhite;
-  }
+    h1 {
+      padding: 5px 20px 5px 5px;
+    }
 
-  .cart-empty {
-    padding: 25px;
-  }
+    > div {
+      flex-grow: 1.5;
+    }
+}
+
+li {
+  cursor: pointer;
+  background-color: antiquewhite;
+}
+
+.cart-empty {
+  padding: 25px;
+}
+
+.sort-container {
+  color: #504f4f;
+  width: 100px;
+  height: 50px;
+  margin-left: 25px;
+}
+
+.checkbox {
+  margin: 0 10px;
+}

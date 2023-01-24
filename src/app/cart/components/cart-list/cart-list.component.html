@@ -1,20 +1,34 @@
 <ng-container *ngIf="(cartList | orderBy : sortItems : isReverse) as result">
-  <div
-    *ngFor="let cartItem of result
-    trackBy: trackCartList"
-    class="cart"
-    [matTooltip]=cartItem.description
-    matTooltipPosition="above"
-    >
+  <div class="cart">
+
+    <h1>Cart: </h1>
+
+    <div class="cart-items-list">
       <app-cart-item
+        *ngFor="let cartItem of result; trackBy: trackCartList"
+        [matTooltip]=cartItem.description
+        matTooltipPosition="above"
         [cartItem]="cartItem" 
         (onIncrease)="onQuantityIncrease($event)"
         (onDecrese)="onQuantityDecrease($event)"
         (onDeleteHandler)="onDeleteItem($event)"></app-cart-item>
+    </div>
+
           <p *ngIf="!totalQuantity" class="cart-empty">Cart is empty</p>
+
       <div class="products-values">
         <div>total quantity: {{ totalQuantity }}</div>
         <div>total cost: {{ totalCost }} $</div>
       </div>
+
+      <div class="sort-container">
+        <select [(ngModel)]="sortItems" placeholder="sort by:" >
+          <option value="title">title</option>
+          <option value="price">price</option>
+          <option value="quantity">quantity</option>
+        </select>
+        <mat-checkbox class="checkbox" [(ngModel)]="isReverse">sort reverse</mat-checkbox>
+      </div>
+
   </div>
 </ng-container>

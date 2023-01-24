@@ -13,8 +13,9 @@ export class CartListComponent implements OnInit, DoCheck {
   totalQuantity: number = 0;
   totalCost: number = 0;
   isEmptyCart: boolean = false;
-  sortItems!: keyof CartList;
+  sortItems: string = 'title';
   isReverse: boolean = false;
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
