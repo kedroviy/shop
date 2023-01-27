@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ProductModel } from 'src/app/products/models/product.model';
 import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
+
+import { ProductModel } from 'src/app/products/models/product.model';
 
 @Component({
   selector: 'app-product',

@@ -37,3 +37,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 11. Header in AppComponent set from hook ngAfterViewInit, use decorator @ViewChild for this.
 - 12. For hover effect on cart items created shared derective with @HostListening and @HostBinding decorators.
 - 13. If try add alredy exist prudct in cart we get console message about it and happen nothing. 
+
+## [3.0-Services]
+
+### Added
+
+## [4.0-Pipes]
+
+### Added
+
+1. Use default pipes like uppercase, currency.
+2. getProducts() return Observable. Use async pipe.
+3. Created OrderByPipe for sort items. Use in cart list.
+4. OrderdByPipe in SharedModule.
+5. Use in cart-list.
+6. FormsModule exported from SharedModule.
+7. changelog updated.

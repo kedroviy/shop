@@ -5,7 +5,6 @@ import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',

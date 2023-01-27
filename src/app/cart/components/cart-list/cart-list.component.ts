@@ -1,6 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { CartList } from '../../models/cart.models';
 
+import { CartList } from '../../models/cart.models';
 import { CartService } from '../../services/cart.service';
 
 @Component({
