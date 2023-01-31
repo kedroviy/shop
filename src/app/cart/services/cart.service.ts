@@ -1,11 +1,11 @@
-import { Injectable, DoCheck } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CartList } from '../models/cart.models';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CartService implements DoCheck {
+export class CartService {
   cartList: CartList[] = [
     {
       id: 1,
@@ -49,19 +49,14 @@ export class CartService implements DoCheck {
       price: 3,
       isAvalableInStore: true
     }
-  ]
+  ];
   constructor() { }
-
-  ngDoCheck() {
-    
-  }
 
   onQuantityIncrease(cartItem: CartList) {
     this.cartList.map(listItem => {
       if(listItem.description === cartItem.description) {
         listItem.quantity ? listItem.quantity += 1 : listItem.quantity = 1
         listItem.price += cartItem.price
-        console.log(cartItem.price)
       }
     })
   }
@@ -75,8 +70,9 @@ export class CartService implements DoCheck {
     })
   }
 
-  onDeleteItem(id: number) {
-    return this.cartList.splice(id, 1);
+  onDeleteItem(product: CartList): void {
+    let newCart = this.cartList.filter(el => el.id !== product.id);
+    this.cartList = [...newCart];
   }
 
   getCartList(): CartList[]{
@@ -107,7 +103,15 @@ export class CartService implements DoCheck {
 
 
   totalQuantity(): number {
-    return this.cartList.length
+    return this.cartList?.length
+  }
+
+  isEmptyCart(): boolean {
+    if(!this.cartList?.length) {
+      return true
+    } else {
+      return false
+    }
   }
 
 }

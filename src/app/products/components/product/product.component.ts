@@ -1,29 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ProductsService } from 'src/app/products/services/products.service';
-import { ProductModel } from 'src/app/products/models/product.model';
 import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
-import { CartService } from 'src/app/cart/services/cart.service';
 
+import { ProductModel } from 'src/app/products/models/product.model';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent implements OnInit {
+  @Input() product!: ProductModel;
   @Output() onBoughtProduct = new EventEmitter<ProductModel>();
-
-  productList: ProductModel[] = [];
 
   STRINGS = STR_LIST;
 
-  constructor(
-    private productService: ProductsService,
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.productList = this.productService.getProducts();
   }
 
   public onAddToCart(product: ProductModel): void {

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { CartList } from '../../models/cart.models';
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,22 +8,15 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./cart-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartItemComponent implements OnInit, DoCheck {
+export class CartItemComponent {
+  @Input() cartItem!: CartList;
   @Output() onIncrease: EventEmitter<CartList> = new EventEmitter();
   @Output() onDecrese: EventEmitter<CartList> = new EventEmitter();
-  @Output() onDeleteHandler: EventEmitter<number> = new EventEmitter();
+  @Output() onDeleteHandler: EventEmitter<CartList> = new EventEmitter();
 
-  cartList: CartList[] = [];
+  cartList!: CartList[];
 
-  constructor(private cartService: CartService) { }
-
-  ngOnInit(): void {
-    this.cartList = this.cartService.getCartList();
-  }
-
-  ngDoCheck(): void {
-
-  }
+  constructor() { }
 
   onQuantityIncrease(cartItem: CartList) {
     this.onIncrease.emit(cartItem)
@@ -33,8 +26,8 @@ export class CartItemComponent implements OnInit, DoCheck {
     this.onDecrese.emit(cartItem)
   }
 
-  onDeleteItem(id: number) {
-    this.onDeleteHandler.emit(id)
+  onDeleteItem():void {
+    this.onDeleteHandler.emit(this.cartItem)
   }
 
   trackCartList(index: number, cartList: { id: number; }) {

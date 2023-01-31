@@ -1,5 +1,7 @@
 <div class="list">
   <app-product
+    *ngFor="let product of (productList | async)"
+    [product]="product"
     (onBoughtProduct)="addOnCart($event)">
   </app-product>
 </div>
