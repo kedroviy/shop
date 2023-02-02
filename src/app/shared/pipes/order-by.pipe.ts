@@ -4,11 +4,11 @@ import { Input, Pipe, PipeTransform } from '@angular/core';
   name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
-  @Input() key: string;
-  
+  @Input() key!: string;
+
 
   transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+    return null; // ? я так понимаю, что это лишний файл
   }
 
 }
