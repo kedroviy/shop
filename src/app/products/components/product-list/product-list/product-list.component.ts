@@ -1,3 +1,4 @@
+// import { Router, ActivatedRoute } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,7 +16,9 @@ export class ProductListComponent implements OnInit {
 
   productList!: Observable<ProductModel[]>;
 
-  constructor(private cartService: CartService, public productService: ProductsService) {}
+  constructor(
+    private cartService: CartService,
+    public productService: ProductsService) {}
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();
