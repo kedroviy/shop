@@ -8,13 +8,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { SharedModule } from '../shared/shared.module';
+import { CartRoutingModule } from './cart-routing.module';
 
 @NgModule({
   declarations: [
     CartListComponent,
     CartItemComponent,
   ],
-  exports: [CartListComponent, CartItemComponent],
   imports: [
     CommonModule,
     MatTooltipModule,
@@ -22,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatCheckboxModule,
     SharedModule,
+    CartRoutingModule,
   ]
 })
 export class CartModule { }
