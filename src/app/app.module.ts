@@ -30,11 +30,4 @@ import { ProductsModule } from './products/products.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor(router: Router) {
-    const replacer = (key: string, value: any): string =>
-      typeof value === 'function' ? value.name : value;
-
-    console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
-}
-}
+export class AppModule { }
