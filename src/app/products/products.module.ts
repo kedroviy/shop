@@ -6,11 +6,13 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 import { ProductListComponent, ProductComponent } from './components';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductViewComponent } from './components/product-view/product-view.component';
 
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductComponent
+    ProductComponent,
+    ProductViewComponent
   ],
   imports: [
     ProductsRoutingModule,

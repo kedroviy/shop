@@ -1,4 +1,5 @@
 // import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,16 +13,20 @@ import { ProductsService } from 'src/app/products/services/products.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  @Output() onBoughtProduct: EventEmitter<ProductModel[]> = new EventEmitter();
-
   productList!: Observable<ProductModel[]>;
 
   constructor(
     private cartService: CartService,
-    public productService: ProductsService) {}
+    public productService: ProductsService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();
+  }
+
+  onViewProduct(product: ProductModel): void {
+    const link = ['/product-view', product.id];
+    this.router.navigate(link);
   }
 
   addOnCart(productItem: ProductModel): void {
