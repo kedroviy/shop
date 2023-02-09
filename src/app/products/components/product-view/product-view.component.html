@@ -1,1 +1,8 @@
-<p>product-view works!</p>
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header>{{ productItem.title }}</mat-card-header>
+        <mat-card-subtitle>{{ productItem.description }}</mat-card-subtitle>
+        <mat-card-content>price: {{ productItem.price }} $</mat-card-content>
+        <button mat-raised-button color="accent" (click)="onBack()">back</button>
+      </mat-card>
+</div>

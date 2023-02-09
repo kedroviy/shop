@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
-
 import { ProductModel } from 'src/app/products/models/product.model';
 
 @Component({
@@ -26,7 +25,8 @@ export class ProductComponent implements OnInit {
     this.onBoughtProduct.emit(product);
   }
 
-  public onViewProduct(): void {
+  public onViewProduct(product: ProductModel): void {
+    this.onBoughtProduct.emit(product);
     this.productView.emit(this.product);
   }
 }

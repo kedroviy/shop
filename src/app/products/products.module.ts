@@ -4,9 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { ProductListComponent, ProductComponent } from './components';
+import { ProductListComponent, ProductComponent, ProductViewComponent  } from './components';
 import { ProductsRoutingModule } from './products-routing.module';
-import { ProductViewComponent } from './components/product-view/product-view.component';
 
 @NgModule({
   declarations: [

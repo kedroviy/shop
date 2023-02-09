@@ -1,6 +1,6 @@
-// import { Router, ActivatedRoute } from '@angular/router';
+import { EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CartService } from 'src/app/cart/services/cart.service';
@@ -14,23 +14,25 @@ import { ProductsService } from 'src/app/products/services/products.service';
 })
 export class ProductListComponent implements OnInit {
   productList!: Observable<ProductModel[]>;
-
+  
   constructor(
     private cartService: CartService,
     public productService: ProductsService,
-    private router: Router) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();
   }
 
   onViewProduct(product: ProductModel): void {
+    this.productService.setViewProductItem(product);
     const link = ['/product-view', product.id];
     this.router.navigate(link);
   }
 
   addOnCart(productItem: ProductModel): void {
-    this.cartService.addOnCartSimple(productItem)
+    this.cartService.addOnCartSimple(productItem);
   }
 
 }
