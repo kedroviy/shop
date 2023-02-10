@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CartModule } from './cart/cart.module';
-// import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 
@@ -20,11 +19,11 @@ import { ProductsModule } from './products/products.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CartModule,
     OrdersModule,
     SharedModule,
     HttpClientModule,
-    ProductsModule
+    ProductsModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

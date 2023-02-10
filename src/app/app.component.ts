@@ -12,6 +12,6 @@ export class AppComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
-    el.innerHTML = STRINGS.HEADER_TITLE
+    el.innerHTML = STRINGS.HEADER_TITLE.toUpperCase();
   }
 }

@@ -5,16 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { CartListComponent } from './components/cart-list/cart-list.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { SharedModule } from '../shared/shared.module';
 import { CartRoutingModule } from './cart-routing.module';
+import { CartIconComponent, CartListComponent, CartItemComponent } from './components';
 
 @NgModule({
   declarations: [
     CartListComponent,
     CartItemComponent,
+    CartIconComponent,
   ],
+  exports: [CartIconComponent],
   imports: [
     CommonModule,
     MatTooltipModule,

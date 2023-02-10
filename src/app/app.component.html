@@ -1,22 +1,16 @@
-<h1 #appTitle appHostClick class="main-title"></h1>
-<!-- <app-first></app-first> -->
+<h1 #appTitle
+	appHostClick
+	class="main-title"></h1>
+<app-cart-icon></app-cart-icon>
 <div>
-    <ul class="nav navbar-nav">
-        <!-- <li routerLinkActive="active">
-            <a routerLink="/about">About</a>
-        </li> -->
-        <li routerLinkActive="active">
-            <a routerLink="/products">Home</a>
-        </li>
-        <li routerLinkActive="active">
-            <a routerLink="/cart">Cart</a>
-        </li>
-        <!-- <li routerLinkActive="active">
-            <a routerLink="/login">Login</a>
-        </li> -->
-
-    </ul>
+	<ul class="nav navbar-nav">
+		<li routerLinkActive="active">
+			<a routerLink="/products">Home</a>
+		</li>
+		<li routerLinkActive="active">
+			<a routerLink="/cart">Cart</a>
+		</li>
+	</ul>
 </div>
-<!-- <app-product-list></app-product-list> -->
+<div class="background"></div>
 <router-outlet #routerOutlet="outlet"></router-outlet>
-<!-- <app-cart-list></app-cart-list> -->
