@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 
 import { CartListComponent } from './cart';
+import { IsCartEmptyGuard } from './core/guards/is-cart-empty.guard';
 import { ProcessOrderComponent } from './orders';
 import { ProductListComponent } from './products';
 
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    component: ProcessOrderComponent
+    component: ProcessOrderComponent,
+    canActivate: [IsCartEmptyGuard]
   },
   // {
   //   path: 'users',
