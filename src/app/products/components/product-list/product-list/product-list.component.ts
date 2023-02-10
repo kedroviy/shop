@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
 
   onViewProduct(product: ProductModel): void {
     this.productService.setViewProductItem(product);
-    const link = ['/product-view', product.id];
+    const link = ['/product-view', product.title + '-' + product.id];
     this.router.navigate(link);
   }
 

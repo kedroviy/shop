@@ -3,7 +3,9 @@ import {
   type Routes,
   RouterModule,
 } from '@angular/router';
+
 import { CartListComponent } from './cart';
+import { ProcessOrderComponent } from './orders';
 import { ProductListComponent } from './products';
 
 const routes: Routes = [
@@ -14,6 +16,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartListComponent,
+  },
+  {
+    path: 'order',
+    component: ProcessOrderComponent
   },
   // {
   //   path: 'users',
