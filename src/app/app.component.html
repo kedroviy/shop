@@ -1,7 +1,9 @@
 <h1 #appTitle
 	appHostClick
 	class="main-title"></h1>
+
 <app-cart-icon></app-cart-icon>
+
 <div>
 	<ul class="nav navbar-nav">
 		<li routerLinkActive="active">
@@ -10,7 +12,14 @@
 		<li routerLinkActive="active">
 			<a routerLink="/cart">Cart</a>
 		</li>
+        <li>
+			<button mat-stroked-button class="mat-button" (click)="onOpenDialog()">LogIn</button>
+		</li>
 	</ul>
 </div>
+
+<app-login-dialog clas="app-login-dialog" (isCloseDialog)="onCloseDialog()" *ngIf="isLoginDialogOpen"></app-login-dialog>
+
 <div class="background"></div>
+
 <router-outlet #routerOutlet="outlet"></router-outlet>

@@ -7,11 +7,25 @@ import { STRINGS } from '../app-config/const/constants';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit {
+  isLoginDialogOpen: boolean = false;
+
   @ViewChild('appTitle') appTitleElementRef!: ElementRef<HTMLHeadingElement>; 
 
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
     el.innerHTML = STRINGS.HEADER_TITLE.toUpperCase();
+  };
+
+  onOpenDialog():void {
+    if (!this.isLoginDialogOpen) {
+      this.isLoginDialogOpen = true;
+    } else {
+      this.isLoginDialogOpen = false;
+    }
+  };
+
+  onCloseDialog(): void {
+    this.isLoginDialogOpen = false;
   }
 }
