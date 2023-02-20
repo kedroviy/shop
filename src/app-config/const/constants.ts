@@ -1,4 +1,4 @@
 export const STRINGS = {
-    IS_HAS_IN_STORE: 'has in store?',
+    IS_HAS_IN_STORE: 'in store: ',
     HEADER_TITLE: 'Shop',
 };

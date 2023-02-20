@@ -1,0 +1,8 @@
+<div class="container" routerLinkActive="active">
+    <a routerLink="/cart">
+        <img src="../../../../assets/images/shopping-cart.png" alt="shopping-cart">
+        <div class="container__cart-quantity" *ngIf="totalQuantity > 0">
+            <span>{{ totalQuantity }}</span>
+        </div>
+    </a>
+</div>

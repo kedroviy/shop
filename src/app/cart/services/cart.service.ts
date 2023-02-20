@@ -6,50 +6,7 @@ import { CartList } from '../models/cart.models';
 })
 
 export class CartService {
-  cartList: CartList[] = [
-    {
-      id: 1,
-      title: "bread",
-      description: "chocolate bread",
-      price: 1,
-      isAvalableInStore: true,
-    },
-    {
-      id: 2,
-      title: "cookies",
-      description: "chocolate coockies",
-      price: 5,
-      isAvalableInStore: true
-    },
-    {
-      id: 3,
-      title: "snikers",
-      description: "simple",
-      price: 4,
-      isAvalableInStore: true
-    },
-    {
-      id: 4,
-      title: "pasta",
-      description: "pasta 001",
-      price: 2.8,
-      isAvalableInStore: true
-    },
-    {
-      id: 5,
-      title: "water",
-      description: "natural water",
-      price: 3,
-      isAvalableInStore: true
-    },
-    {
-      id: 6,
-      title: "milk",
-      description: "from cow",
-      price: 3,
-      isAvalableInStore: true
-    }
-  ];
+  cartList: CartList[] = [];
   constructor() { }
 
   onQuantityIncrease(cartItem: CartList) {

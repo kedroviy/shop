@@ -21,10 +21,38 @@
         "isAvalableInStore": true
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "notebook",
         "description": "natural papper 12",
         "price": 2.15,
+        "isAvalableInStore": true
+    },
+    {
+        "id": 5,
+        "title": "pasta",
+        "description": "spaghetti",
+        "price": 3.15,
+        "isAvalableInStore": true
+    },
+    {
+        "id": 6,
+        "title": "yogurt",
+        "description": "greec",
+        "price": 1.05,
+        "isAvalableInStore": true
+    },
+    {
+        "id": 7,
+        "title": "cat-food",
+        "description": "dry 1,5kg",
+        "price": 15.05,
+        "isAvalableInStore": true
+    },
+    {
+        "id": 7,
+        "title": "cat-food",
+        "description": "dry 1,5kg",
+        "price": 15.05,
         "isAvalableInStore": true
     }]
  }
