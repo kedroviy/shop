@@ -6,6 +6,9 @@ import { AuthGuard } from '../core/guards/auth.guard';
 
 import { AdminComponent } from './admin.component';
 import { AdminProductsListComponent } from './components';
+import { AdminResolveGuard } from './guards';
+import { CanDeactivateGuard } from '../core/guards/can-deactivate.guard';
+import { AdminFormComponent } from './components/admin-form/admin-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +20,14 @@ const routes: Routes = [{
       children: [
         { path: 'manage-products', component: AdminProductsListComponent },
         { path: 'product/add', component: AdminAddProductComponent},
+        {
+          path: 'edit/:adminID',
+          component: AdminFormComponent,
+          canDeactivate: [CanDeactivateGuard],
+          resolve: {
+            user: AdminResolveGuard
+          }
+        },
         { path: '', component: AdminDashboardComponent },
       ]
     }]

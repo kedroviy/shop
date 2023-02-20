@@ -1,6 +1,7 @@
 <div class="admin-container">
 	<div class="admin-container__list">
 		<app-admin-product-item *ngFor="let product of (productList | async)"
-			[product]="product"></app-admin-product-item>
+			[product]="product"
+			(editProduct)="onEditProduct($event)"></app-admin-product-item>
 	</div>
 </div>

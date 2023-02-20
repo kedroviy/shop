@@ -5,5 +5,5 @@
     <mat-card-footer class="card__footer">{{ STRINGS.IS_HAS_IN_STORE | uppercase }}
         <span *ngIf="product.isAvalableInStore"> + </span>
     </mat-card-footer>
-    <button mat-raised-button color="warn">Edit Product</button>
+    <button mat-raised-button color="warn" (click)="onEditProduct()">Edit Product</button>
   </mat-card>

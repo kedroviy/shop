@@ -11,12 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminProductItemComponent } from './components/admin-product-item/admin-product-item.component';
 import { AdminAddProductComponent } from './components/admin-add-product/admin-add-product.component';
+import { AdminFormComponent } from './components/admin-form/admin-form.component';
 
 @NgModule({
   declarations: [
     AdminRoutingModule.components,
     AdminProductItemComponent,
     AdminAddProductComponent,
+    AdminFormComponent,
   ],
   imports: [
     CommonModule,

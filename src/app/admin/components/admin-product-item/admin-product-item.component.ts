@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { STRINGS as STR_LIST } from '../../../../app-config/const/constants';
 import { ProductModel } from 'src/app/products/models/product.model';
@@ -8,12 +8,13 @@ import { ProductModel } from 'src/app/products/models/product.model';
   templateUrl: './admin-product-item.component.html',
   styleUrls: ['./admin-product-item.component.scss']
 })
-export class AdminProductItemComponent implements OnInit {
+export class AdminProductItemComponent {
   @Input() product!: ProductModel;
+  @Output() editProduct = new EventEmitter<ProductModel>();
 
   STRINGS = STR_LIST;
-  constructor() { }
 
-  ngOnInit(): void {
+  onEditProduct(): void {
+    this.editProduct.emit(this.product);
   }
 }

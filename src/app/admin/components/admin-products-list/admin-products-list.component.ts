@@ -15,10 +15,15 @@ export class AdminProductsListComponent implements OnInit {
   
   constructor(
     public productService: ProductsService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.productList = this.productService.getProducts();
   }
 
+  onEditProduct({ id }: any): void {
+    const link = ['/admin/edit', id];
+    this.router.navigate(link);
+  }
 }
