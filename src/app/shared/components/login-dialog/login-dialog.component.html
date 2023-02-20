@@ -1,9 +1,21 @@
 <div class="container">
+	<div class="container__operations">
+
+		<img (click)="onCloseDialog()"
+			src="../../../../assets/images/error.png"
+			alt="close">
+
+	</div>
 	<h1 mat-dialog-title>Choose your role!</h1>
 	<div mat-dialog-actions>
-		<button mat-raised-button color="accent" (click)="onCloseDialog()">User</button>
-		<button mat-raised-button
-        color="warn"
+		<button (click)="onCloseDialog()"
+			mat-raised-button
+			color="accent">
+			User
+		</button>
+		<button (click)="onLogin()"
+			mat-raised-button
+			color="warn"
 			cdkFocusInitial>
 			Admin
 		</button>

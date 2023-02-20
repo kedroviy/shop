@@ -10,6 +10,7 @@ import { ProductModel } from 'src/app/products/models/product.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent implements OnInit {
+  @Input() isAdminLogged: boolean = false;
   @Input() product!: ProductModel;
   @Output() onBoughtProduct = new EventEmitter<ProductModel>();
   @Output() productView = new EventEmitter<ProductModel>();
@@ -26,7 +27,6 @@ export class ProductComponent implements OnInit {
   }
 
   public onViewProduct(product: ProductModel): void {
-    this.onBoughtProduct.emit(product);
-    this.productView.emit(this.product);
+    this.productView.emit(product);
   }
 }

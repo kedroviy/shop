@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { STRINGS } from '../app-config/const/constants';
+// import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,12 @@ import { STRINGS } from '../app-config/const/constants';
 export class AppComponent implements AfterViewInit {
   isLoginDialogOpen: boolean = false;
 
+  isAdminLog: boolean = false;
+
   @ViewChild('appTitle') appTitleElementRef!: ElementRef<HTMLHeadingElement>; 
 
+  // constructor (public authService: AuthService) {}
+  
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
     el.innerHTML = STRINGS.HEADER_TITLE.toUpperCase();
@@ -28,4 +33,9 @@ export class AppComponent implements AfterViewInit {
   onCloseDialog(): void {
     this.isLoginDialogOpen = false;
   }
+
+  // checkAdminLogged(): void {
+  //   this.isAdminLog = this.authService.isAdmin;
+  //   console.log('1')
+  // }
 }

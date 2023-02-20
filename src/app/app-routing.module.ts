@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import {
   type Routes,
+  type ExtraOptions,
   RouterModule,
+  type UrlSegment,
+  type UrlSegmentGroup,
+  type Route,
+  type UrlMatchResult
 } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 
 import { CartListComponent } from './cart';
+import { AuthGuard } from './core/guards/auth.guard';
 import { IsCartEmptyGuard } from './core/guards/is-cart-empty.guard';
 import { ProcessOrderComponent } from './orders';
 import { ProductListComponent } from './products';
@@ -22,6 +29,12 @@ const routes: Routes = [
     path: 'order',
     component: ProcessOrderComponent,
     canActivate: [IsCartEmptyGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+      .then(m => m.AdminModule),
+    canActivateChild: [AuthGuard],
   },
   // {
   //   path: 'users',
