@@ -19,12 +19,12 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     OrdersModule,
     SharedModule,
-    HttpClientModule,
     ProductsModule,
     CartModule,
     MatButtonModule,
