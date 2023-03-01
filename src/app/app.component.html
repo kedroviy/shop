@@ -1,4 +1,47 @@
-<h1 #appTitle appHostClick class="main-title"></h1>
-<app-first></app-first>
-<app-product-list></app-product-list>
-<app-cart-list></app-cart-list>
+<h1 #appTitle
+	appHostClick
+	class="main-title"></h1>
+
+<app-cart-icon></app-cart-icon>
+
+<div>
+	<ul
+		class="nav navbar-nav">
+		<li routerLinkActive="active">
+			<a routerLink="/products">Home</a>
+		</li>
+		<li routerLinkActive="active">
+			<a routerLink="/cart">Cart</a>
+		</li>
+		<li>
+			<button (click)="onOpenDialog()"
+				mat-stroked-button
+				class="mat-button">
+				LogIn
+			</button>
+		</li>
+	</ul>
+	<!-- <ul *ngIf="isAdminLog"
+		class="nav navbar-nav">
+		<li routerLinkActive="active">
+			<a routerLink="/manage-products">Home</a>
+		</li>
+		<li routerLinkActive="active">
+			<a routerLink="admin/orders">Orders</a>
+		</li>
+		<li>
+			<button (click)="onOpenDialog()"
+				mat-stroked-button
+				class="mat-button">
+				LogIn
+			</button>
+		</li>
+	</ul> -->
+</div>
+
+<app-login-dialog *ngIf="isLoginDialogOpen"
+	(isCloseDialog)="onCloseDialog()"
+	clas="app-login-dialog"></app-login-dialog>
+    
+<router-outlet #routerOutlet="outlet"></router-outlet>
+<div class="background"></div>

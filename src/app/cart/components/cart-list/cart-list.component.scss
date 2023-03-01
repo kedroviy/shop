@@ -1,4 +1,5 @@
 .cart {
+  position: relative;
     display: flex;
     justify-content: space-between;
     min-width: 350px;
@@ -29,6 +30,7 @@ li {
 
 .cart-empty {
   padding: 25px;
+  font-size: 2rem;
 }
 
 .sort-container {
@@ -40,4 +42,10 @@ li {
 
 .checkbox {
   margin: 0 10px;
+}
+
+.do-order-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

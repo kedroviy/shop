@@ -1,9 +1,11 @@
 <mat-card class="card">
-  <mat-card-header>{{ product.title }}</mat-card-header>
+  <mat-card-header class="card__header">{{ product.title | uppercase }}</mat-card-header>
   <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
   <mat-card-content>price: {{ product.price }} $</mat-card-content>
-  <mat-card-footer>{{ STRINGS.IS_HAS_IN_STORE }}
-      <span *ngIf="product.isAvalableInStore"> yes </span>
+  <mat-card-footer class="card__footer">{{ STRINGS.IS_HAS_IN_STORE | uppercase }}
+      <span *ngIf="product.isAvalableInStore"> + </span>
   </mat-card-footer>
   <button mat-raised-button color="accent" (click)="onAddToCart(product)">BUY</button>
+  <button mat-raised-button color="primary" (click)="onViewProduct(product)">Show Product</button>
+  <button mat-raised-button color="warn" *ngIf="isAdminLogged">Edit Product</button>
 </mat-card>
