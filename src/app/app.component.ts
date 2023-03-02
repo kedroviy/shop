@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { STRINGS } from '../app-config/const/constants';
-// import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +13,6 @@ export class AppComponent implements AfterViewInit {
   isAdminLog: boolean = false;
 
   @ViewChild('appTitle') appTitleElementRef!: ElementRef<HTMLHeadingElement>; 
-
-  // constructor (public authService: AuthService) {}
   
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
@@ -33,9 +30,4 @@ export class AppComponent implements AfterViewInit {
   onCloseDialog(): void {
     this.isLoginDialogOpen = false;
   }
-
-  // checkAdminLogged(): void {
-  //   this.isAdminLog = this.authService.isAdmin;
-  //   console.log('1')
-  // }
 }

@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService, ProductsPromiseService } from 'src/app/products/';
+import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,9 +14,9 @@ export class ProductListComponent implements OnInit {
   productList!: Promise<ProductModel[]>;
   
   constructor(
-    private cartService: CartService,
     public productService: ProductsService,
     private productsPromiseServices: ProductsPromiseService,
+    private cartObservableService: CartObservableService,
     private router: Router
   ) { }
 
@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addOnCart(productItem: ProductModel): void {
-    this.cartService.addOnCartSimple(productItem);
+    this.cartObservableService.addOnCartSimple(productItem).subscribe(response => response);
   }
 
 }

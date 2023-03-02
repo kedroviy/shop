@@ -9,3 +9,8 @@ export const constantsService = {
 }
 
 export const Constants = new InjectionToken<AppInfoModel>('constantsService');
+
+export const ShopAPI = new InjectionToken<string>('shopAPI', {
+  providedIn: 'root',
+  factory: () => 'http://localhost:3000/cartList'
+});

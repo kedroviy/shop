@@ -28,9 +28,9 @@ export class FirstComponent implements OnInit {
   description: string = 'description';
 
   data: ISimpleInterface[] = [{
-  price: 5,
-  category: Category.food,
-  isAvailable: false,
+    price: 5,
+    category: Category.food,
+    isAvailable: false,
   }]
 
   constructor(
