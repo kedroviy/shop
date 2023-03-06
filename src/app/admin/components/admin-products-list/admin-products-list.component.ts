@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
+
+import { ProductsPromiseService } from 'src/app/products';
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
 
@@ -11,15 +12,16 @@ import { ProductsService } from 'src/app/products/services/products.service';
   styleUrls: ['./admin-products-list.component.scss']
 })
 export class AdminProductsListComponent implements OnInit {
-  productList!: Observable<ProductModel[]>;
+  productList!: Promise<ProductModel[]>;
   
   constructor(
     public productService: ProductsService,
+    private productsPromiseServices: ProductsPromiseService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.productList = this.productService.getProducts();
+    this.productList = this.productsPromiseServices.getProducts();
   }
 
   onEditProduct({ id }: any): void {

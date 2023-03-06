@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, BehaviorSubject } from 'rxjs';
+
+
+import { AppSettings } from 'src/app/core/models/app-settings.model';
+import { AppSettingsService } from 'src/app/core/services/app-settings.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -9,12 +13,15 @@ import { Observable, map } from 'rxjs';
 })
 export class AdminDashboardComponent implements OnInit {
   sessionId!: Observable<string>;
+  refreshAdminName$ = new BehaviorSubject<boolean>(true);
   token!: Observable<string>;
+  adminName$!: Observable<AppSettings | null>;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private appSettingsService: AppSettingsService) { }
 
   ngOnInit(): void {
-    
+    this.appSettingsService.getAppSettings('adminName').subscribe(value => value ? this.adminName$ = value.key.name : null);
+
     this.sessionId = this.route
       .queryParamMap
       .pipe(

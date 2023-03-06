@@ -13,7 +13,7 @@ export class IsCartEmptyGuard implements CanActivate {
   constructor( private cartService: CartService, private router: Router, ) { }
 
   onCheckEmptyCart(): void {
-    if (this.cartService.totalQuantity() === 0) {
+    if (this.cartService.returnTotalLength() === 0) {
       this.isEmptyCart = true;
     } else {
       this.isEmptyCart = false;

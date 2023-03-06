@@ -1,34 +1,39 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 
+import { CartObservableService } from './../../services/cart-observable.service';
 import { CartList } from '../../models/cart.models';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.scss']
+  styleUrls: ['./cart-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartListComponent implements OnInit, DoCheck {
-  cartList!: CartList[];
-  totalQuantity: number = 0;
+export class CartListComponent implements OnInit {
+  @Output() totalQuantityEmit = new EventEmitter<number>();
+
+  cartList$!: Observable<CartList[]>;
+  refreshCartList$ = new BehaviorSubject<boolean>(true);
+  totalQuantity$!: Observable<number>;
   totalCost: number = 0;
-  isEmptyCart: boolean = false;
+  isEmptyCart: boolean = true;
   sortItems: string = 'title';
   isReverse: boolean = false;
 
-  constructor(private cartService: CartService) { }
+  cartListLengthSub!: number;
+
+  constructor(
+    private cartService: CartService,
+    private cartObservableService: CartObservableService,
+  ) { }
 
   ngOnInit(): void {
-    this.cartList = this.cartService.getCartList();
-    this.totalQuantity = this.cartService.totalQuantity();
-    this.cartService.totalCost();
-  }
-
-  ngDoCheck(): void {
-    this.totalQuantity = this.cartService.totalQuantity();
-    this.totalCost = this.cartService.totalCost();
-    this.isEmptyCart = this.cartService.isEmptyCart();
-    this.cartList = this.cartService.getCartList();
+    this.cartList$ = this.refreshCartList$.pipe(switchMap(() => this.cartObservableService.getCartList()));
+    this.cartList$.subscribe((list) => {
+      this.cartListLengthSub = list.length
+    });
   }
 
   onQuantityIncrease(cartItem: CartList): void {
@@ -40,11 +45,16 @@ export class CartListComponent implements OnInit, DoCheck {
   }
 
   onDeleteItem(item: CartList): void {
-    this.cartService.onDeleteItem(item);
+    this.cartObservableService.deleteProduct(item).subscribe(v => v);
+    this.totalQuantity$ = this.cartList$.pipe(map(list => {
+      this.totalQuantityEmit.emit(list.length);
+      return list.length
+    }));
+    this.refreshCartList$.next(true);
   }
 
-  trackCartList(index: number, cartList: { id: number; }) {
-    return cartList ? cartList.id : undefined;
+  trackCartList(index: number, cartList$: { id: number; }) {
+    return cartList$.id;
   }
 
 }

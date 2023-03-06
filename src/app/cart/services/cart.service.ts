@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { CartList } from '../models/cart.models';
 
 @Injectable({
@@ -6,7 +7,9 @@ import { CartList } from '../models/cart.models';
 })
 
 export class CartService {
-  cartList: CartList[] = [];
+  cartList!: CartList[];
+  totalLengthOfCart: number = 0;
+
   constructor() { }
 
   onQuantityIncrease(cartItem: CartList) {
@@ -32,8 +35,8 @@ export class CartService {
     this.cartList = [...newCart];
   }
 
-  getCartList(): CartList[]{
-    return this.cartList;
+  getCartList(): void {
+    
   }
 
   addOnCartSimple(product: CartList): void {
@@ -58,9 +61,12 @@ export class CartService {
     return Number(resultCost.toFixed(2))
   }
 
+  addToTotalQuantity(length: number): number {
+    return this.totalLengthOfCart = length;
+  }
 
-  totalQuantity(): number {
-    return this.cartList?.length
+  returnTotalLength(): number {
+    return this.totalLengthOfCart;
   }
 
   isEmptyCart(): boolean {

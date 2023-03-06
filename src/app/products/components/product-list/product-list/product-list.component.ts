@@ -1,11 +1,9 @@
-import { EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
-import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductModel } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsService, ProductsPromiseService } from 'src/app/products/';
+import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,16 +11,18 @@ import { ProductsService } from 'src/app/products/services/products.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  productList!: Observable<ProductModel[]>;
-  
+  productList!: Promise<ProductModel[]>;
+  applicationSettings: any = '../../../assets/app-settings.json';
+
   constructor(
-    private cartService: CartService,
     public productService: ProductsService,
-    private router: Router
+    private productsPromiseServices: ProductsPromiseService,
+    private cartObservableService: CartObservableService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.productList = this.productService.getProducts();
+    this.productList = this.productsPromiseServices.getProducts();
   }
 
   onViewProduct(product: ProductModel): void {
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addOnCart(productItem: ProductModel): void {
-    this.cartService.addOnCartSimple(productItem);
+    this.cartObservableService.addOnCartSimple(productItem).subscribe(response => response);
   }
 
 }
