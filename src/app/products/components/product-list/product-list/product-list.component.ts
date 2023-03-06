@@ -12,12 +12,13 @@ import { CartObservableService } from 'src/app/cart/services/cart-observable.ser
 })
 export class ProductListComponent implements OnInit {
   productList!: Promise<ProductModel[]>;
-  
+  applicationSettings: any = '../../../assets/app-settings.json';
+
   constructor(
     public productService: ProductsService,
     private productsPromiseServices: ProductsPromiseService,
     private cartObservableService: CartObservableService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

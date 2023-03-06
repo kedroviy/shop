@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ProductsPromiseService } from 'src/app/products';
 
+
+import { ProductsPromiseService } from 'src/app/products';
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
 

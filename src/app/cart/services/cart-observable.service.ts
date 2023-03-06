@@ -45,8 +45,6 @@ export class CartObservableService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  updateUser(product: CartList) { }
-
   deleteProduct(product: CartList): Observable<CartList[]> {
     const url = `${this.cartUrl}/${product.id}`;
   

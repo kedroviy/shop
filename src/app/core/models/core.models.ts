@@ -5,8 +5,8 @@ export interface ConfigModel {
 }
 
 export interface AppInfoModel {
-  App: string;
-  Ver: string;
-  API_URL: string;
+    App: string;
+    Ver: string;
+    API_URL: string;
 }
   

@@ -12,20 +12,20 @@ export class AppComponent implements AfterViewInit {
 
   isAdminLog: boolean = false;
 
-  @ViewChild('appTitle') appTitleElementRef!: ElementRef<HTMLHeadingElement>; 
-  
+  @ViewChild('appTitle') appTitleElementRef!: ElementRef<HTMLHeadingElement>;
+
   ngAfterViewInit() {
     const el = this.appTitleElementRef?.nativeElement;
     el.innerHTML = STRINGS.HEADER_TITLE.toUpperCase();
-  };
+  }
 
-  onOpenDialog():void {
+  onOpenDialog(): void {
     if (!this.isLoginDialogOpen) {
       this.isLoginDialogOpen = true;
     } else {
       this.isLoginDialogOpen = false;
     }
-  };
+  }
 
   onCloseDialog(): void {
     this.isLoginDialogOpen = false;

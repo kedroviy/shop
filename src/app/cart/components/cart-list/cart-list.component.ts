@@ -23,14 +23,14 @@ export class CartListComponent implements OnInit {
   isReverse: boolean = false;
 
   cartListLengthSub!: number;
-  
+
   constructor(
     private cartService: CartService,
     private cartObservableService: CartObservableService,
   ) { }
 
   ngOnInit(): void {
-    this.cartList$ = this.refreshCartList$.pipe(switchMap(_ => this.cartObservableService.getCartList()));
+    this.cartList$ = this.refreshCartList$.pipe(switchMap(() => this.cartObservableService.getCartList()));
     this.cartList$.subscribe((list) => {
       this.cartListLengthSub = list.length
     });
