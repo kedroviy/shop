@@ -1,9 +1,15 @@
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import type { Observable } from 'rxjs';
+
+import { type ProductsState, type AppState, productsFeatureKey } from '../../../../core/@ngrx';
 
 import { ProductModel } from 'src/app/products/models/product.model';
-import { ProductsService, ProductsPromiseService } from 'src/app/products/';
+import { ProductsService } from 'src/app/products/';
 import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
+
+import * as ProductsActions from '../../../../core/@ngrx/products/products.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -11,18 +17,21 @@ import { CartObservableService } from 'src/app/cart/services/cart-observable.ser
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  productList!: Promise<ProductModel[]>;
+  productsState$!: Observable<ProductsState>;
   applicationSettings: any = '../../../assets/app-settings.json';
 
   constructor(
+    private store: Store<AppState>,
     public productService: ProductsService,
-    private productsPromiseServices: ProductsPromiseService,
     private cartObservableService: CartObservableService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.productList = this.productsPromiseServices.getProducts();
+    console.log('We have a store! ', this.store);
+
+    this.productsState$ = this.store.select(productsFeatureKey);
+    this.store.dispatch(ProductsActions.getProducts());
   }
 
   onViewProduct(product: ProductModel): void {
