@@ -120,6 +120,10 @@
   },
   "defaultProject": "shop",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@ngrx/schematics",
+      "@ngrx/schematics"
+    ]
   }
 }
