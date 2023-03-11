@@ -13,6 +13,7 @@ import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { httpInterceptorProviders } from './core';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { httpInterceptorProviders } from './core';
     ProductsModule,
     CartModule,
     MatButtonModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
