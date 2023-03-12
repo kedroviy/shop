@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
+import { CartList } from 'src/app/cart/models/cart.models';
 import { ProductModel } from './../../../products/models/product.model';
-
 
 export const getProducts = createAction('[Product List Page (App)] GET_PRODUCTS');
 
@@ -16,10 +16,18 @@ export const getProductsError = createAction(
 );
 
 
-export const getProduct = createAction(
-    '[Add/Edit Product Page (App)] GET_PRODUCT',
-    props<{ productID: number }>()
+export const addProduct = createAction('[Add Product] ADD_PRODUCT');
+
+export const addProductSuccess = createAction(
+    '[Add Product Effect] ADD_PRODUCT_SUCCEESS',
+    props<{ product: CartList }>()
 );
+
+export const addProductError = createAction(
+    '[Add Products Effect] ADD_PRODUCTS_ERROR',
+    props<{ error: Error | string | null }>()
+);
+
 
 export const createProduct = createAction(
     '[Product Form Page] CREATE_PRODUCT',
@@ -27,7 +35,7 @@ export const createProduct = createAction(
 );
 
 export const updateProduct = createAction(
-    '[Produc Form Page] UPDATE_PRODUCT',
+    '[Product Form Page] UPDATE_PRODUCT',
     props<{ product: ProductModel }>()
 );
 
@@ -36,7 +44,20 @@ export const completeProduct = createAction(
     props<{ product: ProductModel }>()
 );
 
+
 export const deleteProduct = createAction(
-    '[Product List Page] DELETE_PRODUCT',
-    props<{ product: ProductModel }>()
+    '[Product Cart] DELETE_PRODUCT',
+    props<{ product: CartList }>()
 );
+
+export const deleteProductSuccess = createAction(
+    '[Delete  Cart Product Effect] DELETE_PRODUCT_SUCCESS',
+    props<{ product: CartList }>()
+);
+
+export const deleteProductError = createAction(
+    '[Delete Cart Product Effect] DELETE_PRODUCT_ERROR',
+    props<{ error: Error | string | null }>()
+);
+
+

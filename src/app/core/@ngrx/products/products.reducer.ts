@@ -7,7 +7,7 @@ import { ProductModel } from 'src/app/products/models/product.model';
 export const reducer = createReducer(
     initialProductsState,
     on(ProductsActions.getProducts, state => {
-        console.log('GET_ProductS action being handled!');
+        console.log('GET_RODUCTS action being handled!');
         return {
             ...state,
             loading: true
@@ -32,9 +32,22 @@ export const reducer = createReducer(
             error
         };
     }),
-    on(ProductsActions.getProduct, state => {
-        console.log('GET_PRODUCT action being handled!');
-        return { ...state };
+    on(ProductsActions.addProduct, (state) => {
+        console.log('ADD_PRODUCT action being handled!');
+        return {
+            ...state,
+            loading: true
+        };
+    }),
+    on(ProductsActions.addProductSuccess, (state, { product }) => {
+        console.log('ADD_PRODUCT action being handled!');
+        const data = [...state.data, { ...product }];
+        return {
+            ...state,
+            data,
+            loading: false,
+            loaded: true
+        };
     }),
     on(ProductsActions.createProduct, state => {
         console.log('CREATE_PRODUCT action being handled!');
