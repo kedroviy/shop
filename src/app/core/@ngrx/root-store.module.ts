@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 
+import { routerReducers, CustomSerializer } from './router';
+import { metaReducers } from './meta-reducers';
 import { ProductsStoreModule } from './products/products-store.module'
 import { environment } from './../../../environments/environment';
 
@@ -11,22 +14,28 @@ import { environment } from './../../../environments/environment';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forRoot({}, {
+    StoreModule.forRoot(routerReducers, {
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
-        strictStateSerializability: true,
+        strictStateSerializability: false,
         strictActionSerializability: false,
         strictActionWithinNgZone: true,
         strictActionTypeUniqueness: true
       }
     }),
     EffectsModule.forRoot([]),
-    ProductsStoreModule,
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
     }) : [],
+    ProductsStoreModule,
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer // has a priority over routerState
+    }),
   ]
 })
 export class RootStoreModule { }

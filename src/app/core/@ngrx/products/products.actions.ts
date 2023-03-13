@@ -16,7 +16,9 @@ export const getProductsError = createAction(
 );
 
 
-export const addProduct = createAction('[Add Product] ADD_PRODUCT');
+export const addProduct = createAction('[Add Product] ADD_PRODUCT',
+    props<{ product: CartList }>()
+);
 
 export const addProductSuccess = createAction(
     '[Add Product Effect] ADD_PRODUCT_SUCCEESS',
@@ -30,13 +32,34 @@ export const addProductError = createAction(
 
 
 export const createProduct = createAction(
-    '[Product Form Page] CREATE_PRODUCT',
+    '[Product Admin Page] CREATE_PRODUCT',
     props<{ product: ProductModel }>()
 );
 
-export const updateProduct = createAction(
-    '[Product Form Page] UPDATE_PRODUCT',
+export const createProductSuccess = createAction(
+    '[Create Product Effect] CREATE_PRODUCT_SUCCESS',
     props<{ product: ProductModel }>()
+);
+
+export const createProductError = createAction(
+    '[Create Product Effect] CREATE_PRODUCT_ERROR',
+    props<{ error: Error | string | null }>()
+);
+
+
+export const updateProduct = createAction(
+    '[Product Admin Page] UPDATE_Product',
+    props<{ product: ProductModel }>()
+);
+
+export const updateProductSuccess = createAction(
+    '[Update Product Effect] UPDATE_PRODUCT_SUCCESS',
+    props<{ product: ProductModel }>()
+);
+
+export const updateProductError = createAction(
+    '[Update Product Effect] UPDATE_PRODUCT_ERROR',
+    props<{ error: Error | string | null }>()
 );
 
 export const completeProduct = createAction(
@@ -46,12 +69,12 @@ export const completeProduct = createAction(
 
 
 export const deleteProduct = createAction(
-    '[Product Cart] DELETE_PRODUCT',
+    '[Delete Cart Product Effect] DELETE_PRODUCT',
     props<{ product: CartList }>()
 );
 
 export const deleteProductSuccess = createAction(
-    '[Delete  Cart Product Effect] DELETE_PRODUCT_SUCCESS',
+    '[Delete Cart Product Effect] DELETE_PRODUCT_SUCCESS',
     props<{ product: CartList }>()
 );
 

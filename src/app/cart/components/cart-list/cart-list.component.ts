@@ -1,5 +1,6 @@
+/* eslint-disable ngrx/no-typed-global-store */
 import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/core/@ngrx';

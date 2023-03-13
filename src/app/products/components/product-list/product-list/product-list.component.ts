@@ -1,3 +1,4 @@
+/* eslint-disable ngrx/no-typed-global-store */
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -40,8 +41,8 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  addOnCart(productItem: ProductModel): void {
-    this.cartObservableService.addOnCartSimple(productItem).subscribe(response => response);
+  addOnCart(product: ProductModel): void {
+    this.store.dispatch(ProductsActions.addProduct({ product }));
   }
 
 }

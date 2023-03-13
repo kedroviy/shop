@@ -57,5 +57,13 @@
       "isAvalableInStore": true
     }
   ],
-  "cartList": []
+  "cartList": [
+    {
+      "id": 3,
+      "title": "water",
+      "description": "natural water",
+      "price": 1.15,
+      "isAvalableInStore": true
+    }
+  ]
 }
