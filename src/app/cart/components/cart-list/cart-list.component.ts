@@ -51,11 +51,7 @@ export class CartListComponent implements OnInit {
 
   onDeleteItem(product: CartList): void {
     this.store.dispatch(ProductsActions.deleteProduct({ product }));
-    // this.cartObservableService.deleteProduct(item).subscribe(v => v);
-    // this.totalQuantity$ = this.cartList$.pipe(map(list => {
-    //   this.totalQuantityEmit.emit(list.length);
-    //   return list.length
-    // }));
+    
     this.refreshCartList$.next(true);
   }
 
