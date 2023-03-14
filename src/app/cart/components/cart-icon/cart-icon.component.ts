@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CartService } from '../../services/cart.service';
 
@@ -6,7 +6,6 @@ import { CartService } from '../../services/cart.service';
   selector: 'app-cart-icon',
   templateUrl: './cart-icon.component.html',
   styleUrls: ['./cart-icon.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartIconComponent implements OnInit {
   totalQuantity: number = 0;

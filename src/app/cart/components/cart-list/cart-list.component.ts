@@ -1,9 +1,13 @@
+/* eslint-disable ngrx/no-typed-global-store */
 import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
 
+import { AppState } from 'src/app/core/@ngrx';
 import { CartObservableService } from './../../services/cart-observable.service';
 import { CartList } from '../../models/cart.models';
 import { CartService } from '../../services/cart.service';
+import * as ProductsActions from '../../../core/@ngrx/products/products.actions';
 
 @Component({
   selector: 'app-cart-list',
@@ -25,6 +29,7 @@ export class CartListComponent implements OnInit {
   cartListLengthSub!: number;
 
   constructor(
+    private store: Store<AppState>,
     private cartService: CartService,
     private cartObservableService: CartObservableService,
   ) { }
@@ -44,12 +49,9 @@ export class CartListComponent implements OnInit {
     this.cartService.onQuantityDecrease(cartItem);
   }
 
-  onDeleteItem(item: CartList): void {
-    this.cartObservableService.deleteProduct(item).subscribe(v => v);
-    this.totalQuantity$ = this.cartList$.pipe(map(list => {
-      this.totalQuantityEmit.emit(list.length);
-      return list.length
-    }));
+  onDeleteItem(product: CartList): void {
+    this.store.dispatch(ProductsActions.deleteProduct({ product }));
+    
     this.refreshCartList$.next(true);
   }
 

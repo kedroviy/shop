@@ -6,10 +6,6 @@ import type {
   RouterStateSnapshot,
   UrlTree,
   CanActivateChild,
-  NavigationExtras,
-  CanLoad,
-  Route,
-  UrlSegment
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -27,14 +23,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private checkLogin(url: string): boolean | UrlTree {
     if (this.authService.isLoggedIn) { return true; }
-    
+
+    this.authService.redirectUrl = url
     return false
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log('CanActivate Guard is called');
+    console.log('CanActivate Guard is called');
     const { url } = state;
     return this.checkLogin(url);
   }
@@ -44,13 +41,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     console.log('CanActivateChild Guard is called');
     const { url } = state;
     console.log(this.checkLogin(url))
-    return this.checkLogin(url);
-  }
-
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean |
-    UrlTree> | boolean | UrlTree {
-    console.log('CanLoad Guard is called');
-    const url = `/${route.path}`;
     return this.checkLogin(url);
   }
 

@@ -17,10 +17,12 @@ export class TimingInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       tap(
-        (event: HttpEvent<any>) => ok = event instanceof HttpResponse ? 'succeeded' : '',
-        (error: HttpErrorResponse) => ok = "failed"
+        {
+          next: (event: HttpEvent<any>) => ok = event instanceof HttpResponse ? 'succeeded' : '',
+          error: (error: HttpErrorResponse) => {"failed"; throw error },
+        }
       ),
-      
+
       finalize(() => {
         const elapsedTime = Date.now() - started;
         const message = `${req.method} "${req.urlWithParams}" ${ok} in ${elapsedTime} ms.`;

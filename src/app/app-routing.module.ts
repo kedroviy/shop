@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import {
   type Routes,
-  type ExtraOptions,
   RouterModule,
-  type UrlSegment,
-  type UrlSegmentGroup,
-  type Route,
-  type UrlMatchResult
 } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
 
 import { CartListComponent } from './cart';
 import { AuthGuard } from './core/guards/auth.guard';

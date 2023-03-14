@@ -1,5 +1,8 @@
 <div class="list">
-	<app-product *ngFor="let product of (productList | async)"
+	
+	<p *ngIf="(productsState$ | async)?.error as value">{{value}}</p>
+
+	<app-product *ngFor="let product of (productsState$ | async)?.data"
 		[product]="product"
 		(onBoughtProduct)="addOnCart($event)"
 		(productView)="onViewProduct($event)">

@@ -1,9 +1,15 @@
+/* eslint-disable ngrx/no-typed-global-store */
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import type { Observable } from 'rxjs';
+
+import { type ProductsState, type AppState, selectProductsState, ProductsFacade } from '../../../../core/@ngrx';
 
 import { ProductModel } from 'src/app/products/models/product.model';
-import { ProductsService, ProductsPromiseService } from 'src/app/products/';
-import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
+import { ProductsService } from 'src/app/products/';
+
+import * as ProductsActions from '../../../../core/@ngrx/products/products.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -11,18 +17,22 @@ import { CartObservableService } from 'src/app/cart/services/cart-observable.ser
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  productList!: Promise<ProductModel[]>;
+  productsState$!: Observable<ProductsState>;
   applicationSettings: any = '../../../assets/app-settings.json';
 
   constructor(
+    private store: Store<AppState>,
     public productService: ProductsService,
-    private productsPromiseServices: ProductsPromiseService,
-    private cartObservableService: CartObservableService,
     private router: Router,
+    private productsFacade: ProductsFacade
   ) { }
 
   ngOnInit(): void {
-    this.productList = this.productsPromiseServices.getProducts();
+    console.log('We have a store! ', this.store);
+
+    // this.productsState$ = this.store.select(productsFeatureKey);
+    this.productsState$ = this.store.select(selectProductsState);
+    this.store.dispatch(ProductsActions.getProducts());
   }
 
   onViewProduct(product: ProductModel): void {
@@ -31,8 +41,8 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  addOnCart(productItem: ProductModel): void {
-    this.cartObservableService.addOnCartSimple(productItem).subscribe(response => response);
+  addOnCart(product: ProductModel): void {
+    this.productsFacade.addProduct({ product });
   }
 
 }

@@ -57,34 +57,5 @@
       "isAvalableInStore": true
     }
   ],
-  "cartList": [
-    {
-      "id": 4,
-      "title": "notebook",
-      "description": "natural papper 12",
-      "price": 2.15,
-      "isAvalableInStore": true
-    },
-    {
-      "id": 1,
-      "title": "milk",
-      "description": "milk 2.8%",
-      "price": 1.86,
-      "isAvalableInStore": true
-    },
-    {
-      "id": 2,
-      "title": "cookies",
-      "description": "chocolate coockies",
-      "price": 3,
-      "isAvalableInStore": true
-    },
-    {
-      "id": 6,
-      "title": "yogurt",
-      "description": "greec",
-      "price": 1.05,
-      "isAvalableInStore": true
-    }
-  ]
+  "cartList": []
 }
