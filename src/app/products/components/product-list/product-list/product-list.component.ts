@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import type { Observable } from 'rxjs';
 
-import { type ProductsState, type AppState, productsFeatureKey } from '../../../../core/@ngrx';
+import { type ProductsState, type AppState, selectProductsState } from '../../../../core/@ngrx';
 
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/';
@@ -31,7 +31,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     console.log('We have a store! ', this.store);
 
-    this.productsState$ = this.store.select(productsFeatureKey);
+    // this.productsState$ = this.store.select(productsFeatureKey);
+    this.productsState$ = this.store.select(selectProductsState);
     this.store.dispatch(ProductsActions.getProducts());
   }
 

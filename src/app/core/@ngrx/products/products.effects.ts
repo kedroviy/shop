@@ -9,7 +9,6 @@ import { ProductsPromiseService } from 'src/app/products';
 import { CartList } from 'src/app/cart/models/cart.models';
 
 import * as ProductsActions from './products.actions';
-import * as RouterActions from './../router/router.actions';
 
 @Injectable()
 export class ProductsEffects {
@@ -54,16 +53,16 @@ export class ProductsEffects {
         )
     });
 
-    createUpdateTaskSuccess$: Observable<Action> = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(ProductsActions.createProductSuccess, ProductsActions.updateProductSuccess),
-            map(action =>
-                RouterActions.go({
-                    path: ['/products']
-                })
-            )
-        );
-    });
+    // createUpdateTaskSuccess$: Observable<Action> = createEffect(() => {
+    //     return this.actions$.pipe(
+    //         ofType(ProductsActions.createProductSuccess, ProductsActions.updateProductSuccess),
+    //         map(action =>
+    //             RouterActions.go({
+    //                 path: ['/products']
+    //             })
+    //         )
+    //     );
+    // });
 
 
     constructor(

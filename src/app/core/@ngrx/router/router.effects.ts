@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, EffectConfig, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs';
 
 import * as RouterActions from './router.actions';
+
+const effectConfig: EffectConfig = {
+    dispatch: false
+};
 
 @Injectable()
 export class RouterEffects {
@@ -19,20 +23,20 @@ export class RouterEffects {
             { return this.actions$.pipe(
                 ofType(RouterActions.go),
                 tap(action => {
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    const { type: deleted, path, queryParams, extras } = { ...action };
-                    this.router.navigate(path, { queryParams, ...extras });
+                    const { type: path, queryParams, extras } = { ...action };
+                    this.router.navigate([path, { queryParams, ...extras }]);
                 })
             ) },
-        { dispatch: false }
+        effectConfig
     );
 
     navigateBack$ = createEffect(
-        () =>
-            { return this.actions$.pipe(
+        () => {
+            return this.actions$.pipe(
                 ofType(RouterActions.back),
-                tap(() => this.location.back())
-            ) },
+                tap(() => this.location.back()),
+            )
+        },
         { dispatch: false }
     );
 }
