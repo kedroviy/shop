@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import type { Observable } from 'rxjs';
 
-import { type ProductsState, type AppState, selectProductsState } from '../../../../core/@ngrx';
+import { type ProductsState, type AppState, selectProductsState, ProductsFacade } from '../../../../core/@ngrx';
 
 import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/';
-import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
 
 import * as ProductsActions from '../../../../core/@ngrx/products/products.actions';
 
@@ -24,8 +23,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     public productService: ProductsService,
-    private cartObservableService: CartObservableService,
     private router: Router,
+    private productsFacade: ProductsFacade
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +42,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addOnCart(product: ProductModel): void {
-    this.store.dispatch(ProductsActions.addProduct({ product }));
+    this.productsFacade.addProduct({ product });
   }
 
 }

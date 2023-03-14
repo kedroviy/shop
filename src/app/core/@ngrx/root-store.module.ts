@@ -25,17 +25,17 @@ import { environment } from './../../../environments/environment';
         strictActionTypeUniqueness: true
       }
     }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer // has a priority over routerState
+    }),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
     }) : [],
     ProductsStoreModule,
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router',
-      routerState: RouterState.Minimal,
-      serializer: CustomSerializer // has a priority over routerState
-    }),
   ]
 })
 export class RootStoreModule { }

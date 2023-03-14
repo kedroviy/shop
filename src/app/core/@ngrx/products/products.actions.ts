@@ -82,5 +82,3 @@ export const deleteProductError = createAction(
     '[Delete Cart Product Effect] DELETE_PRODUCT_ERROR',
     props<{ error: Error | string | null }>()
 );
-
-
