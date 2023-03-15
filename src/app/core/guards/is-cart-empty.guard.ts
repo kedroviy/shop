@@ -9,8 +9,8 @@ import { CartService } from 'src/app/cart/services/cart.service';
 })
 export class IsCartEmptyGuard implements CanActivate {
   isEmptyCart: boolean = true;
-  
-  constructor( private cartService: CartService, private router: Router, ) { }
+
+  constructor(private cartService: CartService, private router: Router,) { }
 
   onCheckEmptyCart(): void {
     if (this.cartService.returnTotalLength() === 0) {
@@ -18,19 +18,19 @@ export class IsCartEmptyGuard implements CanActivate {
     } else {
       this.isEmptyCart = false;
     }
-  };
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.onCheckEmptyCart();
 
-    if(this.isEmptyCart) {
+    if (this.isEmptyCart) {
       confirm('Cart is Empty! Add some product in cart!');
       return false;
     } else {
       return true;
     }
   };
-  
+
 }

@@ -6,7 +6,7 @@ import {
 
 import { CartListComponent } from './cart';
 import { AuthGuard } from './core/guards/auth.guard';
-import { IsCartEmptyGuard } from './core/guards/is-cart-empty.guard';
+// import { IsCartEmptyGuard } from './core/guards/is-cart-empty.guard';
 import { ProcessOrderComponent } from './orders';
 import { ProductListComponent } from './products';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'order',
     component: ProcessOrderComponent,
-    canActivate: [IsCartEmptyGuard]
+    // canActivate: [IsCartEmptyGuard]
   },
   {
     path: 'admin',
