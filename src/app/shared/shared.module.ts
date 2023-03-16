@@ -9,16 +9,25 @@ import { HighLightDirective } from './directives/high-light.directive';
 import { HostClickDirective } from './directives/host-click.directive';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { OrderByPipe } from './pipes/order-by/order-by.pipe';
+import { OnlyNumberDirective } from './directives/check-only-numbers';
 
 @NgModule({
-  declarations: [FirstComponent, HighLightDirective, HostClickDirective, OrderByPipe, LoginDialogComponent],
+  declarations: [
+    FirstComponent,
+    OnlyNumberDirective,
+    HighLightDirective,
+    HostClickDirective,
+    OrderByPipe,
+    LoginDialogComponent,
+  ],
   exports: [
     FirstComponent,
     HighLightDirective,
     HostClickDirective,
+    OnlyNumberDirective,
     OrderByPipe,
     FormsModule,
-    LoginDialogComponent
+    LoginDialogComponent,
   ],
   imports: [
     CommonModule,

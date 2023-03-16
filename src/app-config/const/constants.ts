@@ -6,3 +6,5 @@ export const STRINGS = {
 export const API = {
     productsUrl: 'http://localhost:3000/productsList',
 }
+
+export const regExp = /[A-Z]/;
