@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 
-import { invalidFirstLetterValidator } from './validators';
-import { FORM_FIELD } from '../../constants';
+import { firstNameValidation } from './validators';
+import { FORM_FIELD, validationMessagesMap } from '../../constants';
 
 @Component({
   selector: 'app-process-order',
@@ -13,6 +13,7 @@ import { FORM_FIELD } from '../../constants';
 
 export class ProcessOrderComponent implements OnInit {
   FORM_FIELD = FORM_FIELD;
+  validationMessagesMap = validationMessagesMap;
 
   private buildPhones() {
     return this.fb.group({
@@ -21,9 +22,15 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   formGroup = this.fb.group({
-    [FORM_FIELD.FIRST_NAME]: ['', invalidFirstLetterValidator],
+    [FORM_FIELD.FIRST_NAME]: ['', firstNameValidation],
     [FORM_FIELD.LAST_NAME]: ['', [Validators.required, Validators.maxLength(50)]],
-    [FORM_FIELD.EMAIL]: [''],
+    [FORM_FIELD.EMAIL]: ['',
+      [
+        Validators.required,
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+        Validators.email
+      ]
+    ],
     [FORM_FIELD.PHONE]: this.fb.array([this.buildPhones()]),
     [FORM_FIELD.SELF_DELIVERY]: [false],
     [FORM_FIELD.SHIPPING_ADRESS]: ['', [Validators.required]]
@@ -39,8 +46,13 @@ export class ProcessOrderComponent implements OnInit {
     return this.formGroup.get(fieldName) as FormControl;
   }
 
+  get sendProducts(): AbstractControl {
+    return this.formGroup.get('sendProducts')!;
+  }
+
   ngOnInit(): void {
     console.log(this.formGroup);
+    this.setValidationMessages();
   }
 
   onSave(): void {
@@ -61,9 +73,34 @@ export class ProcessOrderComponent implements OnInit {
     this.phone.removeAt(index);
   }
 
-
   onReset(): void {
     this.formGroup.reset();
+  }
+
+  isShowValidationMessage(controlName: string): boolean {
+    return this.validationMessagesMap.get(controlName)!.message && (this as {
+      [index:
+        string]: any
+    })[controlName].touched;
+  }
+
+  private buildValidationMessages(controlName: string): void {
+    const c: AbstractControl = (this as { [index: string]: any })[controlName];
+    this.validationMessagesMap.get(controlName)!.message = '';
+    if (c?.errors) {
+      this.validationMessagesMap.get(controlName)!.message = Object.keys(c.errors)
+        .map(key => {
+          const value = this.validationMessagesMap.get(controlName)!;
+          return (value as { [index: string]: any })[key];
+        })
+        .join(' ');
+    }
+  }
+
+  private setValidationMessages(): void {
+    this.validationMessagesMap.forEach((control, cntrlName) => {
+      this.buildValidationMessages(cntrlName);
+    });
   }
 
 }

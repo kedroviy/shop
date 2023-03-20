@@ -1,13 +1,13 @@
 import { FormControl, ValidationErrors } from '@angular/forms';
 
 import { regExp } from 'src/app-config/const/constants';
+import { validationMessagesMap } from '../../constants';
 
-
-export const invalidFirstLetterValidator = (formControl: FormControl): ValidationErrors => {
+export const firstNameValidation = (formControl: FormControl): ValidationErrors => {
     const valueArray = formControl.value.split('');
-
-    if (!regExp.test(valueArray[0] || !valueArray.length)) {
-        return { message: 'Enter first letter like uppercase' }
+    
+    if (formControl.value?.length && !regExp.test(valueArray[0])) {
+        return { message: validationMessagesMap.get('firstName')!.firstLetter }
     }
 
     return null as any;
