@@ -49,6 +49,7 @@
                             id="email"
                             placeholder="Email (required)"
                             autocomplete="off"
+                            [formControlName]="FORM_FIELD.EMAIL"
                         />
                         <mat-error class="error">{{ getControl('email').errors?.message }}</mat-error>
                     </mat-form-field>
@@ -56,108 +57,77 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-8 checkbox" >
-                        <label>
-                            <input id="sendProductsId"
-                                   type="checkbox" >
-                            Send me your products
-                        </label>
+                        <mat-checkbox 
+                            class="example-margin" 
+                            color="primary"
+                            [formControlName]="FORM_FIELD.SELF_DELIVERY"
+                        >
+                            Self-delivery</mat-checkbox>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" *ngIf="!getControl(FORM_FIELD.SELF_DELIVERY).value">
                     <mat-form-field>
-                        <input 
-                            matInput
-                            appOnlyNumber
-                            class="form-control"
-                            id="phone"
-                            placeholder="Phone"
-                            autocomplete="off"
-                        />
-                        <mat-error class="error">{{ getControl('phone').errors?.message }}</mat-error>
+                        <mat-label>Shipping address</mat-label>
+                        <textarea 
+                            matInput 
+                            placeholder="Ex. It makes me feel..."
+                            [formControlName]="FORM_FIELD.SHIPPING_ADRESS"
+                        ></textarea>
                     </mat-form-field>
                 </div>
 
-                <div>
-                    <div class="form-group" >
-                        <label class="col-md-2 control-label">Address Type</label>
-                        <div class="col-md-8">
-                                <label class="radio-inline">
-                                    <input type="radio" id="addressType1Id" value="home">Home
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" id="addressType2Id" value="work">Work
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" id="addressType3Id" value="other">Other
-                                </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"
-                            for="cityId">Country, City, Zip Code</label>
-
-                        <div class="col-md-3">
-                            <select class="form-control"
-                                    id="countryId">
-                                <option value="">Select a Country...</option>
-                                <option 
-                                    *ngFor="let country of countries"
-                                    value="{{country}}"
+                <div class="form-group" formArrayName="phone">
+                    <div class="phone-group" *ngFor="let phones of phone.controls; let i = index" [formGroupName]="i">
+                        <mat-form-field>
+                            <input 
+                                matInput
+                                appOnlyNumber
+                                class="form-control"
+                                id={{FORM_FIELD.PHONE}}
+                                placeholder="Phone"
+                                autocomplete="off"
+                                [formControlName]="FORM_FIELD.PHONE"
+                            />
+                        </mat-form-field>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-2"  *ngIf="i>0">
+                                <button class="btn btn-primary"
+                                    type="button"
+                                    (click)="onRemovePhone(i)"
                                 >
-                                    {{country}}
-                                </option>
-                            </select>
-                        </div>
-                         <div class="col-md-3">
-                            <input type="text"
-                                   class="form-control"
-                                   id="cityId"
-                                   placeholder="City">
-                        </div>
-                        <div class="col-md-2">
-                        <input type="number"
-                                   class="form-control"
-                                   id="zipId"
-                                   placeholder="Zip Code">
+                                    X
+                                </button>
+                            </div>
                         </div>
                     </div>
-
-                     <div class="form-group">
-                        <label class="col-md-2 control-label"
-                            for="street1Id">Street Address 1</label>
-                        <div class="col-md-8">
-                            <input type="text"
-                                   class="form-control"
-                                   id="street1Id"
-                                   placeholder="Street address">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"
-                            for="street2Id">Street Address 2</label>
-                        <div class="col-md-8">
-                            <input type="text"
-                                   class="form-control"
-                                   id="street2Id"
-                                   placeholder="Street address (second line)">
-                        </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <button class="btn btn-primary"
+                            type="button"
+                            (click)="onAddPhone()"
+                        >
+                            Add Another Phone Number
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-2">
                         <span>
-                            <button class="btn btn-primary"
-                                    type="submit"
-                                    [disabled]="!formGroup.valid"
-                            >
-                                Save
-                            </button>
                             <button 
-                                class="btn btn-primary"
+                                class="mat-button"
+                                mat-raised-button 
+                                color="primary"
+                                type="submit"
+                                [disabled]="!formGroup.valid"
+                            >
+                                Save</button>
+                            <button 
+                                mat-raised-button 
+                                color="basic"
                                 type="button"
                                 (click)="onReset()"
                             >

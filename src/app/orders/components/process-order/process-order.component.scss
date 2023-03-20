@@ -6,8 +6,9 @@
 }
 
 form {
-    background-color: #5a5a5a;
-    color: aliceblue;
+    // background-color: #5a5a5a;
+    color: #686969;
+    border-radius: 4px;
 }
 
 .form-group {
@@ -20,4 +21,8 @@ input.ng-valid.ng-touched {
 
 .error {
     font-size: .6rem;
+}
+
+.phone-group {
+    display: flex;
 }

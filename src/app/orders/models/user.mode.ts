@@ -3,11 +3,8 @@ export class UserModel {
         public firstName = '',
         public lastName = '',
         public email = '',
-        public sendProducts = false,
+        public phone = [],
+        public selfDelivery: false,
         public addressType = 'home',
-        public street1?: string,
-        public street2?: string,
-        public country = '',
-        public city?: string,
-        public zip?: string) { }
+        ) { }
 }

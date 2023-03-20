@@ -4,4 +4,6 @@ export const FORM_FIELD = {
     EMAIL: 'email',
     SEND_PRODUCTS: 'sendProducts',
     PHONE: 'phone',
+    SELF_DELIVERY: 'selfDelivery',
+    SHIPPING_ADRESS: 'shippingAddress'
 }
