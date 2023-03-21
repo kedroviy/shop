@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 
 import { firstNameValidation } from './validators';
@@ -11,7 +11,7 @@ import { FORM_FIELD, validationMessagesMap } from '../../constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ProcessOrderComponent implements OnInit {
+export class ProcessOrderComponent implements OnInit, OnChanges {
   FORM_FIELD = FORM_FIELD;
   validationMessagesMap = validationMessagesMap;
 
@@ -22,7 +22,7 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   formGroup = this.fb.group({
-    [FORM_FIELD.FIRST_NAME]: ['', firstNameValidation],
+    [FORM_FIELD.FIRST_NAME]: ['', [firstNameValidation, Validators.required]],
     [FORM_FIELD.LAST_NAME]: ['', [Validators.required, Validators.maxLength(50)]],
     [FORM_FIELD.EMAIL]: ['',
       [
@@ -33,7 +33,7 @@ export class ProcessOrderComponent implements OnInit {
     ],
     [FORM_FIELD.PHONE]: this.fb.array([this.buildPhones()]),
     [FORM_FIELD.SELF_DELIVERY]: [false],
-    [FORM_FIELD.SHIPPING_ADRESS]: ['', [Validators.required]]
+    [FORM_FIELD.SHIPPING_ADRESS]: ['']
   });
 
   constructor(private fb: FormBuilder) { }
@@ -53,6 +53,10 @@ export class ProcessOrderComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.formGroup);
     this.setValidationMessages();
+  }
+
+  ngOnChanges(): void {
+    this.setValidators()
   }
 
   onSave(): void {
@@ -82,6 +86,17 @@ export class ProcessOrderComponent implements OnInit {
       [index:
         string]: any
     })[controlName].touched;
+  }
+
+  public setValidators(): void {
+    console.log(this.formGroup.get(FORM_FIELD.SELF_DELIVERY)?.value)
+    if (this.formGroup.get(FORM_FIELD.SELF_DELIVERY)?.value !== true) {
+      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].setValidators([Validators.required, Validators.maxLength(200)]);
+    } else {
+      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].setValidators([Validators.maxLength(200)]);
+    }
+
+    this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].updateValueAndValidity();
   }
 
   private buildValidationMessages(controlName: string): void {
