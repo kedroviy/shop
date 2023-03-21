@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 
 import { firstNameValidation } from './validators';
@@ -11,9 +11,13 @@ import { FORM_FIELD, validationMessagesMap } from '../../constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ProcessOrderComponent implements OnInit, OnChanges {
+export class ProcessOrderComponent implements OnInit {
   FORM_FIELD = FORM_FIELD;
   validationMessagesMap = validationMessagesMap;
+
+  placeholder = {
+    shippingDelivery: FORM_FIELD.SHIPPING_ADRESS,
+  };
 
   private buildPhones() {
     return this.fb.group({
@@ -33,7 +37,7 @@ export class ProcessOrderComponent implements OnInit, OnChanges {
     ],
     [FORM_FIELD.PHONE]: this.fb.array([this.buildPhones()]),
     [FORM_FIELD.SELF_DELIVERY]: [false],
-    [FORM_FIELD.SHIPPING_ADRESS]: ['']
+    [FORM_FIELD.SHIPPING_ADRESS]: ['',  Validators.required]
   });
 
   constructor(private fb: FormBuilder) { }
@@ -46,17 +50,8 @@ export class ProcessOrderComponent implements OnInit, OnChanges {
     return this.formGroup.get(fieldName) as FormControl;
   }
 
-  get sendProducts(): AbstractControl {
-    return this.formGroup.get('sendProducts')!;
-  }
-
   ngOnInit(): void {
     console.log(this.formGroup);
-    this.setValidationMessages();
-  }
-
-  ngOnChanges(): void {
-    this.setValidators()
   }
 
   onSave(): void {
@@ -88,12 +83,13 @@ export class ProcessOrderComponent implements OnInit, OnChanges {
     })[controlName].touched;
   }
 
-  public setValidators(): void {
-    console.log(this.formGroup.get(FORM_FIELD.SELF_DELIVERY)?.value)
-    if (this.formGroup.get(FORM_FIELD.SELF_DELIVERY)?.value !== true) {
-      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].setValidators([Validators.required, Validators.maxLength(200)]);
+  public setDeliveryValidators(): void {
+    console.log(this.getControl(FORM_FIELD.SELF_DELIVERY).value);
+
+    if (!this.getControl(FORM_FIELD.SELF_DELIVERY).value) {
+      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].setValidators([Validators.required]);
     } else {
-      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].setValidators([Validators.maxLength(200)]);
+      this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].clearValidators();
     }
 
     this.formGroup.controls[FORM_FIELD.SHIPPING_ADRESS].updateValueAndValidity();

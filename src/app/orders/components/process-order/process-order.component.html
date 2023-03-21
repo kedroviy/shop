@@ -62,6 +62,7 @@
                             class="example-margin" 
                             color="primary"
                             [formControlName]="FORM_FIELD.SELF_DELIVERY"
+                            (change)="setDeliveryValidators()"
                         >
                             Self-delivery</mat-checkbox>
                     </div>
@@ -72,7 +73,7 @@
                         <mat-label>Shipping address</mat-label>
                         <textarea 
                             matInput 
-                            placeholder="Ex. It makes me feel..."
+                            placeholder={{placeholder.shippingDelivery}}
                             [formControlName]="FORM_FIELD.SHIPPING_ADRESS"
                         ></textarea>
                     </mat-form-field>
