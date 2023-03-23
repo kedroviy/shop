@@ -22,9 +22,9 @@ export class RouterEffects {
         () =>
             { return this.actions$.pipe(
                 ofType(RouterActions.go),
-                tap(action => {
-                    const { type: path, queryParams, extras } = { ...action };
-                    this.router.navigate([path, { queryParams, ...extras }]);
+                tap((action: any) => {
+                    const { path ='', queryParams = '', extras = {} } = { ...action };
+                    this.router.navigate(path, { queryParams, ...extras });
                 })
             ) },
         effectConfig
