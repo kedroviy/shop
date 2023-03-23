@@ -10,6 +10,7 @@ import { ProductModel } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/';
 
 import * as ProductsActions from '../../../../core/@ngrx/products/products.actions';
+import * as RouterActions from '../../../../core/@ngrx/router/router.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -38,7 +39,8 @@ export class ProductListComponent implements OnInit {
   onViewProduct(product: ProductModel): void {
     this.productService.setViewProductItem(product);
     const link = ['/product-view', product.title + '-' + product.id];
-    this.router.navigate(link);
+    this.store.dispatch(RouterActions.go({ path: link } ));
+    // this.router.navigate(link);
   }
 
   addOnCart(product: ProductModel): void {

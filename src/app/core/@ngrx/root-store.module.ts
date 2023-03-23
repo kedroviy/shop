@@ -5,7 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 
-import { routerReducers, CustomSerializer } from './router';
+import { routerReducers, CustomSerializer, RouterEffects } from './router';
 import { metaReducers } from './meta-reducers';
 import { ProductsStoreModule } from './products/products-store.module'
 import { environment } from './../../../environments/environment';
@@ -25,12 +25,12 @@ import { environment } from './../../../environments/environment';
         strictActionTypeUniqueness: true
       }
     }),
+    EffectsModule.forRoot([RouterEffects]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,
       serializer: CustomSerializer // has a priority over routerState
     }),
-    EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
