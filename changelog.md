@@ -53,3 +53,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 5. Use in cart-list.
 6. FormsModule exported from SharedModule.
 7. changelog updated.
+
+## [8.0-Forms]
+
+### Added
+
+1. Realized reactive-form in PressOrderComponent.
+2. Added validation for FirstName, Email
+3. Added directive appOnlyNumbers for phone field.
+4. Added ability for add phone numbers.
+5. Added validate message from another file(for firstName).
+6. Checkbox SELF_DELIVERY can show/hide SHIPPING_ADRESS field(if hide - SHIPPING_ADRESS not required, if show - required)
