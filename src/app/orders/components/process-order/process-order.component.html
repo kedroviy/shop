@@ -1,1 +1,149 @@
-<p>process-order works!</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Order product
+    </div>
+
+    <div class="panel-body">
+        <form 
+            class="form-horizontal"
+            (ngSubmit)="onSave()"
+            [formGroup]="formGroup"
+        >
+            <fieldset>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            class="form-control"
+                            id="firstNameId"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="First Name (required)"
+                            [formControlName]="FORM_FIELD.FIRST_NAME"
+                        />
+                        <mat-error class="error">{{ getControl('firstName').errors?.message }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="text"
+                            class="form-control"
+                            id="lastNameId"
+                            autocomplete="off"
+                            placeholder="Last Name (required)"
+                            [formControlName]="FORM_FIELD.LAST_NAME"
+                        />
+                        <mat-error class="error">{{ getControl('lastName').errors?.message }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="email"
+                            appAsyncEmailValidator
+                            class="form-control"
+                            id="email"
+                            placeholder="Email (required)"
+                            autocomplete="off"
+                            [formControlName]="FORM_FIELD.EMAIL"
+                        />
+                        <mat-error class="error">{{ getControl('email').errors?.message }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-8 checkbox" >
+                        <mat-checkbox 
+                            class="example-margin" 
+                            color="primary"
+                            [formControlName]="FORM_FIELD.SELF_DELIVERY"
+                            (change)="setDeliveryValidators()"
+                        >
+                            Self-delivery</mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="!getControl(FORM_FIELD.SELF_DELIVERY).value">
+                    <mat-form-field>
+                        <mat-label>Shipping address</mat-label>
+                        <textarea 
+                            matInput 
+                            placeholder={{placeholder.shippingDelivery}}
+                            [formControlName]="FORM_FIELD.SHIPPING_ADRESS"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group" formArrayName="phone">
+                    <div class="phone-group" *ngFor="let phones of phone.controls; let i = index" [formGroupName]="i">
+                        <mat-form-field>
+                            <input 
+                                matInput
+                                appOnlyNumber
+                                class="form-control"
+                                id={{FORM_FIELD.PHONE}}
+                                placeholder="Phone"
+                                autocomplete="off"
+                                [formControlName]="FORM_FIELD.PHONE"
+                            />
+                        </mat-form-field>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-2"  *ngIf="i>0">
+                                <button class="btn btn-primary"
+                                    type="button"
+                                    (click)="onRemovePhone(i)"
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <button class="btn btn-primary"
+                            type="button"
+                            (click)="onAddPhone()"
+                        >
+                            Add Another Phone Number
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button 
+                                class="mat-button"
+                                mat-raised-button 
+                                color="primary"
+                                type="submit"
+                                [disabled]="!formGroup.valid"
+                            >
+                                Save</button>
+                            <button 
+                                mat-raised-button 
+                                color="basic"
+                                type="button"
+                                (click)="onReset()"
+                            >
+                                Reset
+                            </button>
+                        </span>
+                    </div>
+                    <!-- <br>Dirty: {{ formGroup.dirty }}
+                    <br>Touched: {{ formGroup.touched }}
+                    <br>Valid: {{ formGroup.valid }}
+                    <br>Value: {{ formGroup.value | json }}
+                    <br>Form Status: {{formGroup.status }} -->
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

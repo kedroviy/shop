@@ -57,5 +57,20 @@
       "isAvalableInStore": true
     }
   ],
-  "cartList": []
+  "cartList": [
+    {
+      "id": 1,
+      "title": "milk",
+      "description": "milk 2.8%",
+      "price": 1.86,
+      "isAvalableInStore": true
+    },
+    {
+      "id": 2,
+      "title": "cookies",
+      "description": "chocolate coockies",
+      "price": 3,
+      "isAvalableInStore": true
+    }
+  ]
 }

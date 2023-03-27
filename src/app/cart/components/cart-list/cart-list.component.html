@@ -15,24 +15,24 @@
       </app-cart-item>
     </div>
 
-          <p *ngIf="(result | async)?.length===0" class="cart-empty">Cart is empty</p>
+      <p *ngIf="(result | async)?.length===0" class="cart-empty">Cart is empty</p>
 
-      <div class="products-values">
-        <div>total quantity: {{ cartListLengthSub }}</div>
-        <div>total cost: {{ totalCost }} $</div>
-      </div>
+    <div class="products-values">
+      <div>total quantity: {{ cartListLengthSub }}</div>
+      <div>total cost: {{ totalCost }} $</div>
+    </div>
 
-      <div class="sort-container">
-        <select [(ngModel)]="sortItems" placeholder="sort by:">
-          <option value="title">title</option>
-          <option value="price">price</option>
-          <option value="quantity">quantity</option>
-        </select>
-        <mat-checkbox class="checkbox" [(ngModel)]="isReverse">sort reverse</mat-checkbox>
-      </div>
+    <div class="sort-container">
+      <select [(ngModel)]="sortItems" placeholder="sort by:">
+        <option value="title">title</option>
+        <option value="price">price</option>
+        <option value="quantity">quantity</option>
+      </select>
+      <mat-checkbox class="checkbox" [(ngModel)]="isReverse">sort reverse</mat-checkbox>
+    </div>
 
-      <div class="do-order-button" routerLinkActive="active">
-        <button mat-raised-button color="primary" routerLink="/order">Make order</button>
-      </div>
+    <div class="do-order-button" routerLinkActive="active">
+      <button mat-raised-button color="primary" routerLink="/order">Make order</button>
+    </div>
   </div>
 </ng-container>
