@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { provideMockStore } from '@ngrx/store/testing';
+import { RouterStub } from 'src/app/testing-helpers';
 
 import { ProductListComponent } from './product-list.component';
 
@@ -8,7 +11,8 @@ describe('ProductListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductListComponent ]
+      declarations: [ ProductListComponent ],
+      providers: [provideMockStore({}), { provide: Router, useClass: RouterStub }]
     })
     .compileComponents();
   });
@@ -16,7 +20,6 @@ describe('ProductListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
