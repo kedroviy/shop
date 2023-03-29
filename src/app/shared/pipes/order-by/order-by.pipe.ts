@@ -17,14 +17,14 @@ export class OrderByPipe implements PipeTransform {
 
     arr.pipe(
       map((a: any, b: any) => {
-      if (a[searchValue] < b[searchValue]) {
-        return sortOrder;
-      } else if (a[searchValue] > b[searchValue]) {
-        return -sortOrder;
-      } else {
-        return 0;
-      }
-    }));
+        if (a[searchValue] < b[searchValue]) {
+            return sortOrder;
+        } else if (a[searchValue] > b[searchValue]) {
+            return -sortOrder;
+        } else {
+            return 0;
+        }
+      }));
     return arr;
   }
 }

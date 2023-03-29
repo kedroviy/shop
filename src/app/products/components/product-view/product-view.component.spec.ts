@@ -17,7 +17,7 @@ describe('ProductViewComponent', () => {
       declarations: [ ProductViewComponent ],
       providers: [
         { provide: Router, useClass: RouterStub },
-          provideMockStore({})
+        provideMockStore({})
       ],
       schemas: [NO_ERRORS_SCHEMA],
     })

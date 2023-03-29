@@ -27,7 +27,7 @@ export class CartItemComponent {
     this.decrese.emit(cartItem)
   }
 
-  onDeleteItem():void {
+  onDeleteItem(): void {
     this.deleteHandler.emit(this.cartItem)
   }
 

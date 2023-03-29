@@ -35,17 +35,13 @@ export class CartService {
     this.cartList = [...newCart];
   }
 
-  getCartList(): void {
-    
-  }
-
   addOnCartSimple(product: CartList): void {
     const equalCartItem = this.cartList.filter(cartItem => cartItem.description === product.description);
     
-    if(equalCartItem.length) {
-      console.log('already in cart');
+    if (equalCartItem.length) {
+        console.log('already in cart');
     } else {
-      this.cartList.push(product)
+        this.cartList.push(product)
     }
   }
 
@@ -54,26 +50,26 @@ export class CartService {
     let resultCost: number = 0;
 
     for(let cartItem of this.cartList) {
-      resultArray.push(cartItem.price)
+        resultArray.push(cartItem.price)
     }
 
-    resultCost = resultArray.reduce((sum, item) => sum + item, 0);
-    return Number(resultCost.toFixed(2))
+      resultCost = resultArray.reduce((sum, item) => sum + item, 0);
+      return Number(resultCost.toFixed(2))
   }
 
   addToTotalQuantity(length: number): number {
-    return this.totalLengthOfCart = length;
+      return this.totalLengthOfCart = length;
   }
 
   returnTotalLength(): number {
-    return this.totalLengthOfCart;
+      return this.totalLengthOfCart;
   }
 
   isEmptyCart(): boolean {
     if(!this.cartList?.length) {
-      return true
+        return true
     } else {
-      return false
+        return false
     }
   }
 
