@@ -7,5 +7,5 @@
   </mat-card-footer>
   <button mat-raised-button color="accent" (click)="onAddToCart(product)">BUY</button>
   <button mat-raised-button color="primary" (click)="onViewProduct(product)">Show Product</button>
-  <button mat-raised-button color="warn" *ngIf="isAdminLogged">Edit Product</button>
+  <button mat-raised-button class="isAdminLogged" color="warn" *ngIf="isAdminLogged">Edit Product</button>
 </mat-card>

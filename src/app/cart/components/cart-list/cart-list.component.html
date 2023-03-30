@@ -9,9 +9,8 @@
         [matTooltip]=cartItem.description
         matTooltipPosition="above"
         [cartItem]="cartItem" 
-        (onIncrease)="onQuantityIncrease($event)"
-        (onDecrese)="onQuantityDecrease($event)"
-        (onDeleteHandler)="onDeleteItem($event)">
+        (increase)="onQuantityIncrease($event)"
+        (deleteHandler)="onDeleteItem($event)">
       </app-cart-item>
     </div>
 

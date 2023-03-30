@@ -64,3 +64,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 4. Added ability for add phone numbers.
 5. Added validate message from another file(for firstName).
 6. Checkbox SELF_DELIVERY can show/hide SHIPPING_ADRESS field(if hide - SHIPPING_ADRESS not required, if show - required)
+
+## [9.0-Unit-Tests]
+
+### Added
+
+1. Tests for product, cart, admin.
+2. Isolate tests for services.
+3. Isolate tests for orderByPipe.
+4. Shallow test for AppComponent.
+5. Added Coverage report.
+
+Coverage summary 
+Statements   : 47.4% ( 128/270 )
+Branches     : 27.58% ( 8/29 )
+Functions    : 23.71% ( 23/97 )
+Lines        : 44.62% ( 108/242 )

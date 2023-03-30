@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CartList } from '../../models/cart.models';
@@ -10,24 +11,24 @@ import { CartList } from '../../models/cart.models';
 })
 export class CartItemComponent {
   @Input() cartItem!: CartList;
-  @Output() onIncrease: EventEmitter<CartList> = new EventEmitter();
-  @Output() onDecrese: EventEmitter<CartList> = new EventEmitter();
-  @Output() onDeleteHandler: EventEmitter<CartList> = new EventEmitter();
+  @Output() increase: EventEmitter<CartList> = new EventEmitter();
+  @Output() decrese: EventEmitter<CartList> = new EventEmitter();
+  @Output() deleteHandler: EventEmitter<CartList> = new EventEmitter();
 
   cartList!: CartList[];
 
   constructor() { }
 
   onQuantityIncrease(cartItem: CartList) {
-    this.onIncrease.emit(cartItem)
+    this.increase.emit(cartItem)
   }
 
   onQuantityDecrease(cartItem: CartList) {
-    this.onDecrese.emit(cartItem)
+    this.decrese.emit(cartItem)
   }
 
-  onDeleteItem():void {
-    this.onDeleteHandler.emit(this.cartItem)
+  onDeleteItem(): void {
+    this.deleteHandler.emit(this.cartItem)
   }
 
   trackCartList(index: number, cartList: { id: number; }) {

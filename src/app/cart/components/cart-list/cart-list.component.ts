@@ -16,47 +16,43 @@ import * as ProductsActions from '../../../core/@ngrx/products/products.actions'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartListComponent implements OnInit {
-  @Output() totalQuantityEmit = new EventEmitter<number>();
+    @Output() totalQuantityEmit = new EventEmitter<number>();
 
-  cartList$!: Observable<CartList[]>;
-  refreshCartList$ = new BehaviorSubject<boolean>(true);
-  totalQuantity$!: Observable<number>;
-  totalCost: number = 0;
-  isEmptyCart: boolean = true;
-  sortItems: string = 'title';
-  isReverse: boolean = false;
+    cartList$!: Observable<CartList[]>;
+    refreshCartList$ = new BehaviorSubject<boolean>(true);
+    totalQuantity$!: Observable<number>;
+    totalCost: number = 0;
+    isEmptyCart: boolean = true;
+    sortItems: string = 'title';
+    isReverse: boolean = false;
 
-  cartListLengthSub!: number;
+    cartListLengthSub!: number;
 
-  constructor(
-    private store: Store<AppState>,
-    private cartService: CartService,
-    private cartObservableService: CartObservableService,
-  ) { }
+    constructor(
+        private store: Store<AppState>,
+        private cartService: CartService,
+        private cartObservableService: CartObservableService,
+    ) { }
 
-  ngOnInit(): void {
-    this.cartList$ = this.refreshCartList$.pipe(switchMap(() => this.cartObservableService.getCartList()));
-    this.cartList$.subscribe((list) => {
-      this.cartListLengthSub = list.length
-    });
-  }
+    ngOnInit(): void {
+        this.cartList$ = this.refreshCartList$.pipe(switchMap(() => this.cartObservableService.getCartList()));
+        this.cartList$.subscribe((list) => {
+          this.cartListLengthSub = list.length
+        });
+    }
 
-  onQuantityIncrease(cartItem: CartList): void {
-    this.cartService.onQuantityIncrease(cartItem);
-  }
+    onQuantityIncrease(cartItem: CartList): void {
+        this.cartService.onQuantityIncrease(cartItem);
+    }
 
-  onQuantityDecrease(cartItem: CartList): void {
-    this.cartService.onQuantityDecrease(cartItem);
-  }
+    onDeleteItem(product: CartList): void {
+        this.store.dispatch(ProductsActions.deleteProduct({ product }));
+      
+        this.refreshCartList$.next(true);
+    }
 
-  onDeleteItem(product: CartList): void {
-    this.store.dispatch(ProductsActions.deleteProduct({ product }));
-    
-    this.refreshCartList$.next(true);
-  }
-
-  trackCartList(index: number, cartList$: { id: number; }) {
-    return cartList$.id;
-  }
+    trackCartList(index: number, cartList$: { id: number; }) {
+        return cartList$.id;
+    }
 
 }

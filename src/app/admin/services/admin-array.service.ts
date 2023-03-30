@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
 import { type Observable, EMPTY, of, throwError, switchMap, catchError } from 'rxjs';
 
