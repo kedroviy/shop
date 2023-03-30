@@ -75,9 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 4. Shallow test for AppComponent.
 5. Added Coverage report.
 
-=============================== Coverage summary ===============================
+Coverage summary 
 Statements   : 47.4% ( 128/270 )
 Branches     : 27.58% ( 8/29 )
 Functions    : 23.71% ( 23/97 )
 Lines        : 44.62% ( 108/242 )
-================================================================================
