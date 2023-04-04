@@ -26,6 +26,8 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   formGroup = this.fb.group({
+    // в чем преимущества такого подхода с динамическим созданием полей?
+    // немного нечитаемо, когда все буквы в верхнем регистре.
     [FORM_FIELD.FIRST_NAME]: ['', [firstNameValidation, Validators.required]],
     [FORM_FIELD.LAST_NAME]: ['', [Validators.required, Validators.maxLength(50)]],
     [FORM_FIELD.EMAIL]: ['',
